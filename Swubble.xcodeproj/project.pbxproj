@@ -12,11 +12,11 @@
 		3A4C688E16E947FA0014DD8E /* menuBackgroundImage-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A4C688916E947FA0014DD8E /* menuBackgroundImage-ipad.png */; };
 		3A4C688F16E947FA0014DD8E /* menuBackgroundImage-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A4C688A16E947FA0014DD8E /* menuBackgroundImage-ipadhd.png */; };
 		3A4C689016E947FA0014DD8E /* menuBackgroundImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A4C688B16E947FA0014DD8E /* menuBackgroundImage.png */; };
-		3A4C68C516E94FE80014DD8E /* default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A4C68C016E94FE80014DD8E /* default-568h@2x.png */; };
-		3A4C68C616E94FE80014DD8E /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A4C68C116E94FE80014DD8E /* default.png */; };
-		3A4C68C716E94FE80014DD8E /* default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A4C68C216E94FE80014DD8E /* default@2x.png */; };
-		3A4C68C816E94FE80014DD8E /* default@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A4C68C316E94FE80014DD8E /* default@2x~ipad.png */; };
-		3A4C68C916E94FE80014DD8E /* default~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A4C68C416E94FE80014DD8E /* default~ipad.png */; };
+		3A4FA27116E9569E00B1C499 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A4FA26C16E9569E00B1C499 /* Default-568h@2x.png */; };
+		3A4FA27216E9569E00B1C499 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A4FA26D16E9569E00B1C499 /* Default.png */; };
+		3A4FA27316E9569E00B1C499 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A4FA26E16E9569E00B1C499 /* Default@2x.png */; };
+		3A4FA27416E9569E00B1C499 /* Default@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A4FA26F16E9569E00B1C499 /* Default@2x~ipad.png */; };
+		3A4FA27516E9569E00B1C499 /* Default~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A4FA27016E9569E00B1C499 /* Default~ipad.png */; };
 		3A8B01D016E79A760082D2B6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8B01CF16E79A760082D2B6 /* QuartzCore.framework */; };
 		3A8B01D216E79A760082D2B6 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8B01D116E79A760082D2B6 /* OpenGLES.framework */; };
 		3A8B01D416E79A760082D2B6 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8B01D316E79A760082D2B6 /* OpenAL.framework */; };
@@ -160,11 +160,11 @@
 		3A4C688916E947FA0014DD8E /* menuBackgroundImage-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menuBackgroundImage-ipad.png"; path = "Resources/menuBackgroundImage-ipad.png"; sourceTree = "<group>"; };
 		3A4C688A16E947FA0014DD8E /* menuBackgroundImage-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menuBackgroundImage-ipadhd.png"; path = "Resources/menuBackgroundImage-ipadhd.png"; sourceTree = "<group>"; };
 		3A4C688B16E947FA0014DD8E /* menuBackgroundImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuBackgroundImage.png; path = Resources/menuBackgroundImage.png; sourceTree = "<group>"; };
-		3A4C68C016E94FE80014DD8E /* default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "default-568h@2x.png"; path = "Resources/default-568h@2x.png"; sourceTree = "<group>"; };
-		3A4C68C116E94FE80014DD8E /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default.png; path = Resources/default.png; sourceTree = "<group>"; };
-		3A4C68C216E94FE80014DD8E /* default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "default@2x.png"; path = "Resources/default@2x.png"; sourceTree = "<group>"; };
-		3A4C68C316E94FE80014DD8E /* default@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "default@2x~ipad.png"; path = "Resources/default@2x~ipad.png"; sourceTree = "<group>"; };
-		3A4C68C416E94FE80014DD8E /* default~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "default~ipad.png"; path = "Resources/default~ipad.png"; sourceTree = "<group>"; };
+		3A4FA26C16E9569E00B1C499 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Resources/Default-568h@2x.png"; sourceTree = "<group>"; };
+		3A4FA26D16E9569E00B1C499 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
+		3A4FA26E16E9569E00B1C499 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/Default@2x.png"; sourceTree = "<group>"; };
+		3A4FA26F16E9569E00B1C499 /* Default@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x~ipad.png"; path = "Resources/Default@2x~ipad.png"; sourceTree = "<group>"; };
+		3A4FA27016E9569E00B1C499 /* Default~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default~ipad.png"; path = "Resources/Default~ipad.png"; sourceTree = "<group>"; };
 		3A8B01CC16E79A760082D2B6 /* Swubble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swubble.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A8B01CF16E79A760082D2B6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3A8B01D116E79A760082D2B6 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -532,11 +532,11 @@
 		3A8B01E216E79A760082D2B6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				3A4C68C016E94FE80014DD8E /* default-568h@2x.png */,
-				3A4C68C116E94FE80014DD8E /* default.png */,
-				3A4C68C216E94FE80014DD8E /* default@2x.png */,
-				3A4C68C316E94FE80014DD8E /* default@2x~ipad.png */,
-				3A4C68C416E94FE80014DD8E /* default~ipad.png */,
+				3A4FA26C16E9569E00B1C499 /* Default-568h@2x.png */,
+				3A4FA26D16E9569E00B1C499 /* Default.png */,
+				3A4FA26E16E9569E00B1C499 /* Default@2x.png */,
+				3A4FA26F16E9569E00B1C499 /* Default@2x~ipad.png */,
+				3A4FA27016E9569E00B1C499 /* Default~ipad.png */,
 				3A4C688716E947FA0014DD8E /* menuBackgroundImage-568h.png */,
 				3A4C688816E947FA0014DD8E /* menuBackgroundImage-hd.png */,
 				3A4C688916E947FA0014DD8E /* menuBackgroundImage-ipad.png */,
@@ -1023,11 +1023,11 @@
 				3A4C688E16E947FA0014DD8E /* menuBackgroundImage-ipad.png in Resources */,
 				3A4C688F16E947FA0014DD8E /* menuBackgroundImage-ipadhd.png in Resources */,
 				3A4C689016E947FA0014DD8E /* menuBackgroundImage.png in Resources */,
-				3A4C68C516E94FE80014DD8E /* default-568h@2x.png in Resources */,
-				3A4C68C616E94FE80014DD8E /* default.png in Resources */,
-				3A4C68C716E94FE80014DD8E /* default@2x.png in Resources */,
-				3A4C68C816E94FE80014DD8E /* default@2x~ipad.png in Resources */,
-				3A4C68C916E94FE80014DD8E /* default~ipad.png in Resources */,
+				3A4FA27116E9569E00B1C499 /* Default-568h@2x.png in Resources */,
+				3A4FA27216E9569E00B1C499 /* Default.png in Resources */,
+				3A4FA27316E9569E00B1C499 /* Default@2x.png in Resources */,
+				3A4FA27416E9569E00B1C499 /* Default@2x~ipad.png in Resources */,
+				3A4FA27516E9569E00B1C499 /* Default~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1177,7 +1177,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1196,7 +1196,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1212,6 +1212,7 @@
 				GCC_PREFIX_HEADER = Swubble/Prefix.pch;
 				HEADER_SEARCH_PATHS = "\"Swubble/libs/kazmath/include\"";
 				INFOPLIST_FILE = Swubble/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lsqlite3",
@@ -1231,6 +1232,7 @@
 				GCC_PREFIX_HEADER = Swubble/Prefix.pch;
 				HEADER_SEARCH_PATHS = "\"Swubble/libs/kazmath/include\"";
 				INFOPLIST_FILE = Swubble/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lsqlite3",

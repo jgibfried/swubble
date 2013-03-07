@@ -108,9 +108,6 @@
 	[sharedFileUtils setiPadRetinaDisplaySuffix:@"-ipadhd"];	// Default on iPad RetinaDisplay is "-ipadhd"
     [sharedFileUtils setiPhoneRetinaDisplaySuffix:@"-hd"];		// Default on iPhone RetinaDisplay is "-hd"
 	
-    NSLog(@"%ld", (long)UI_USER_INTERFACE_IDIOM());
-    NSLog(@"%f", [[UIScreen mainScreen] bounds].size.height);
-    NSLog(@"%f", [[UIScreen mainScreen] bounds].size.width);
     
     if((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) && ([[UIScreen mainScreen] bounds].size.height == 568)) {
         [sharedFileUtils setiPhoneRetinaDisplaySuffix: @"-568h"];

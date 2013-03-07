@@ -7,6 +7,6 @@
 //
 
 /* TEXTURE FILES */
-#define introBackground    @"default.png"
+#define introBackground    @"menuBackgroundImage.png"
 #define menuBackground     @"menuBackgroundImage.png"
 #define gameBackground     @"menuBackgroundImage.png"
