@@ -8,6 +8,7 @@
 
 #import "BaseScene.h"
 #import "MenuLayer.h"
+#import "MenuBackgroundLayer.h"
 
 @interface MenuScene : BaseScene
 

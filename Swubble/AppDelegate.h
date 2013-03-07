@@ -24,4 +24,5 @@
 @property (readonly) MainNavigationController *navController;
 @property (readonly) CCDirectorIOS *director;
 
+
 @end

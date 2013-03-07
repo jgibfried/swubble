@@ -7,9 +7,8 @@
 //
 
 
-#import "cocos2d.h"
-#import <GameKit/GameKit.h>
+#import "BaseLayer.h"
 
-@interface MenuLayer : CCLayer <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate>
+@interface MenuLayer : BaseLayer
 
 @end

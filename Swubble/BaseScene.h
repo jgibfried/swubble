@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 gibfried. All rights reserved.
 //
 
-#import "CCScene.h"
+#import "cocos2d.h"
 
 @interface BaseScene : CCScene
 

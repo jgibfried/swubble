@@ -13,9 +13,11 @@
 +(CCScene *) sceneWithLayers: (NSArray *) layers
 {
 	CCScene *scene = [CCScene node];
-	
+	__block int *zindex = 0;
+    
     [layers enumerateObjectsUsingBlock:^(id layer, NSUInteger idx, BOOL *stop) {
-        [scene addChild: layer];
+        [scene addChild: layer z:zindex];
+        zindex++;
 	}];
 	
 	// return the scene

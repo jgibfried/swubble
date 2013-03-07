@@ -12,7 +12,7 @@
 
 + (CCScene *) init
 {
-    return [BaseScene sceneWithLayers:[[NSArray alloc] initWithObjects:[[MenuLayer alloc] init], nil]];
+    return [BaseScene sceneWithLayers:[[NSArray alloc] initWithObjects:[[MenuBackgroundLayer alloc] init], [[MenuLayer alloc] init], nil]];
 }
 
 @end

@@ -12,7 +12,7 @@
 
 + (CCScene *) init
 {
-    return [BaseScene sceneWithLayers:[[NSArray alloc] initWithObjects:[nil]];
+    return [BaseScene sceneWithLayers:[[NSArray alloc] initWithObjects:[[GameBackgroundLayer alloc] init], nil]];
 }
 
 @end

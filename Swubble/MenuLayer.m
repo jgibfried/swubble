@@ -7,11 +7,8 @@
 //
 
 
-#import "AppDelegate.h"
-#import "MenuLayer.h"
 #import "GameScene.h"
-
-#pragma mark - MenuLayer
+#import "MenuLayer.h"
 
 @implementation MenuLayer
 
@@ -42,7 +39,7 @@
     [menu setPosition:ccp( size.width/2, size.height/2 - 50)];
     
     // Add the menu to the layer
-    [self addChild:menu];
+    [self addChild:menu z:1];
 }
 
 - (void) dealloc
@@ -50,17 +47,4 @@
 	[super dealloc];
 }
 
-#pragma mark GameKit delegate
-
--(void) achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
-{
-	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-	[[app navController] dismissModalViewControllerAnimated:YES];
-}
-
--(void) leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
-{
-	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-	[[app navController] dismissModalViewControllerAnimated:YES];
-}
 @end
