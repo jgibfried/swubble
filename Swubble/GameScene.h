@@ -8,6 +8,7 @@
 
 #import "BaseScene.h"
 #import "GameBackgroundLayer.h"
+#import "GameGridLayer.h"
 
 @interface GameScene : BaseScene
 

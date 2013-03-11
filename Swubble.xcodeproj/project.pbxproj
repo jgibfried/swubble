@@ -154,6 +154,10 @@
 		3AA18F2C16E8E6EC009A3AC3 /* GameBackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA18F2B16E8E6EC009A3AC3 /* GameBackgroundLayer.m */; };
 		3AA18F2F16E8E702009A3AC3 /* MenuBackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA18F2E16E8E702009A3AC3 /* MenuBackgroundLayer.m */; };
 		3AA18F3516E8F4B2009A3AC3 /* BaseLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA18F3416E8F4B2009A3AC3 /* BaseLayer.m */; };
+		3AE0B19716EE909500636BC6 /* GameGridLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE0B19616EE909500636BC6 /* GameGridLayer.m */; };
+		3AE0B19B16EE92FE00636BC6 /* greenBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AE0B19916EE92FE00636BC6 /* greenBubble.png */; };
+		3AE0B19C16EE92FE00636BC6 /* redBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AE0B19A16EE92FE00636BC6 /* redBubble.png */; };
+		3AE0B1A016EE94F700636BC6 /* BubbleSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE0B19F16EE94F700636BC6 /* BubbleSprite.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -459,6 +463,12 @@
 		3AA18F3416E8F4B2009A3AC3 /* BaseLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseLayer.m; sourceTree = "<group>"; };
 		3AA18F3B16E92491009A3AC3 /* DeviceSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceSettings.h; sourceTree = "<group>"; };
 		3AA18F3C16E924B2009A3AC3 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		3AE0B19516EE909500636BC6 /* GameGridLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameGridLayer.h; sourceTree = "<group>"; };
+		3AE0B19616EE909500636BC6 /* GameGridLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameGridLayer.m; sourceTree = "<group>"; };
+		3AE0B19916EE92FE00636BC6 /* greenBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenBubble.png; sourceTree = "<group>"; };
+		3AE0B19A16EE92FE00636BC6 /* redBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redBubble.png; sourceTree = "<group>"; };
+		3AE0B19E16EE94F700636BC6 /* BubbleSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BubbleSprite.h; sourceTree = "<group>"; };
+		3AE0B19F16EE94F700636BC6 /* BubbleSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BubbleSprite.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -536,24 +546,8 @@
 		3A8B01E216E79A760082D2B6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				3A4FA27A16E957C500B1C499 /* Default-portrait@2x~ipad.png */,
-				3A4FA27B16E957C500B1C499 /* Default-portrait~ipad.png */,
-				3A4FA27616E9577800B1C499 /* Default-landscape@2x~ipad.png */,
-				3A4FA27716E9577800B1C499 /* Default-landscape~ipad.png */,
-				3A4FA26C16E9569E00B1C499 /* Default-568h@2x.png */,
-				3A4FA26D16E9569E00B1C499 /* Default.png */,
-				3A4FA26E16E9569E00B1C499 /* Default@2x.png */,
-				3A4C688716E947FA0014DD8E /* menuBackgroundImage-568h.png */,
-				3A4C688816E947FA0014DD8E /* menuBackgroundImage-hd.png */,
-				3A4C688916E947FA0014DD8E /* menuBackgroundImage-ipad.png */,
-				3A4C688A16E947FA0014DD8E /* menuBackgroundImage-ipadhd.png */,
-				3A4C688B16E947FA0014DD8E /* menuBackgroundImage.png */,
-				3A8B01EB16E79A760082D2B6 /* Icon-72.png */,
-				3A8B01ED16E79A760082D2B6 /* Icon-Small-50.png */,
-				3A8B01EF16E79A760082D2B6 /* Icon-Small.png */,
-				3A8B01F116E79A760082D2B6 /* Icon-Small@2x.png */,
-				3A8B01F316E79A760082D2B6 /* Icon.png */,
-				3A8B01F516E79A760082D2B6 /* Icon@2x.png */,
+				3AE0B19816EE92FE00636BC6 /* Sprites */,
+				3AE0B19D16EE930600636BC6 /* Backgrounds */,
 				3A8B01F716E79A760082D2B6 /* Info.plist */,
 				3A8B01F816E79A760082D2B6 /* iTunesArtwork */,
 			);
@@ -926,6 +920,8 @@
 				3AA18F2716E8E68B009A3AC3 /* Intro */,
 				3AA18F2816E8E6A5009A3AC3 /* Menu */,
 				3AA18F2916E8E6B3009A3AC3 /* Game */,
+				3AE0B19E16EE94F700636BC6 /* BubbleSprite.h */,
+				3AE0B19F16EE94F700636BC6 /* BubbleSprite.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -961,8 +957,45 @@
 				3A8B038716E7AA6C0082D2B6 /* GameScene.m */,
 				3AA18F2A16E8E6EC009A3AC3 /* GameBackgroundLayer.h */,
 				3AA18F2B16E8E6EC009A3AC3 /* GameBackgroundLayer.m */,
+				3AE0B19516EE909500636BC6 /* GameGridLayer.h */,
+				3AE0B19616EE909500636BC6 /* GameGridLayer.m */,
 			);
 			name = Game;
+			sourceTree = "<group>";
+		};
+		3AE0B19816EE92FE00636BC6 /* Sprites */ = {
+			isa = PBXGroup;
+			children = (
+				3AE0B19916EE92FE00636BC6 /* greenBubble.png */,
+				3AE0B19A16EE92FE00636BC6 /* redBubble.png */,
+			);
+			name = Sprites;
+			path = Resources/Sprites;
+			sourceTree = "<group>";
+		};
+		3AE0B19D16EE930600636BC6 /* Backgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				3A4FA27A16E957C500B1C499 /* Default-portrait@2x~ipad.png */,
+				3A4FA27B16E957C500B1C499 /* Default-portrait~ipad.png */,
+				3A4FA27616E9577800B1C499 /* Default-landscape@2x~ipad.png */,
+				3A4FA27716E9577800B1C499 /* Default-landscape~ipad.png */,
+				3A4FA26C16E9569E00B1C499 /* Default-568h@2x.png */,
+				3A4FA26D16E9569E00B1C499 /* Default.png */,
+				3A4FA26E16E9569E00B1C499 /* Default@2x.png */,
+				3A4C688716E947FA0014DD8E /* menuBackgroundImage-568h.png */,
+				3A4C688816E947FA0014DD8E /* menuBackgroundImage-hd.png */,
+				3A4C688916E947FA0014DD8E /* menuBackgroundImage-ipad.png */,
+				3A4C688A16E947FA0014DD8E /* menuBackgroundImage-ipadhd.png */,
+				3A4C688B16E947FA0014DD8E /* menuBackgroundImage.png */,
+				3A8B01EB16E79A760082D2B6 /* Icon-72.png */,
+				3A8B01ED16E79A760082D2B6 /* Icon-Small-50.png */,
+				3A8B01EF16E79A760082D2B6 /* Icon-Small.png */,
+				3A8B01F116E79A760082D2B6 /* Icon-Small@2x.png */,
+				3A8B01F316E79A760082D2B6 /* Icon.png */,
+				3A8B01F516E79A760082D2B6 /* Icon@2x.png */,
+			);
+			name = Backgrounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1036,6 +1069,8 @@
 				3A4FA27916E9577800B1C499 /* Default-landscape~ipad.png in Resources */,
 				3A4FA27C16E957C500B1C499 /* Default-portrait@2x~ipad.png in Resources */,
 				3A4FA27D16E957C500B1C499 /* Default-portrait~ipad.png in Resources */,
+				3AE0B19B16EE92FE00636BC6 /* greenBubble.png in Resources */,
+				3AE0B19C16EE92FE00636BC6 /* redBubble.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1164,6 +1199,8 @@
 				3AA18F2C16E8E6EC009A3AC3 /* GameBackgroundLayer.m in Sources */,
 				3AA18F2F16E8E702009A3AC3 /* MenuBackgroundLayer.m in Sources */,
 				3AA18F3516E8F4B2009A3AC3 /* BaseLayer.m in Sources */,
+				3AE0B19716EE909500636BC6 /* GameGridLayer.m in Sources */,
+				3AE0B1A016EE94F700636BC6 /* BubbleSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
