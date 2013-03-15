@@ -7,7 +7,11 @@
 //
 
 #import "BaseLayer.h"
+#import "GameObject.h"
+#import "Bubble.h"
 
-@interface GameGridLayer : BaseLayer
+@interface GameGridLayer : BaseLayer {
+    GameObject *game;
+}
 
 @end
