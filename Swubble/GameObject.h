@@ -19,11 +19,12 @@
 @property (nonatomic) int gameTimeSpent;
 @property (nonatomic) int gameTimeLeft;
 
-@property (nonatomic, strong) GameGrid *leftGrid;
-@property (nonatomic, strong) GameGrid *rightGrid;
+@property (nonatomic, strong) NSArray *grids;
 
 @property (nonatomic, strong) NSTimer *gameTimer;
 
-- (GameObject *) startGame;
+- (void)startGame;
+- (void)populateGrids;
+- (void)drawGridsOnLayer: (CCLayer *)layer atOrigin: (CGPoint) origin;
 
 @end

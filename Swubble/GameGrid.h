@@ -14,6 +14,7 @@
 @interface GameGrid : NSObject
 
 @property (nonatomic, strong) NSArray *grid;
+@property (nonatomic) CGPoint layerOrigin;
 
 +(GameGrid *) initWithDimensions: (CGPoint) dimensions;
 

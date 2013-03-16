@@ -10,8 +10,8 @@
 #import "GameObject.h"
 #import "Bubble.h"
 
-@interface GameGridLayer : BaseLayer {
-    GameObject *game;
-}
+@interface GameGridLayer : BaseLayer
+
+@property (nonatomic, strong) GameObject *game;
 
 @end

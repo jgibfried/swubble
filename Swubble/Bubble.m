@@ -16,7 +16,7 @@
 -(id) init
 {
 	if( (self=[super init]) ) {
-        int randomNumber = (int) ((double)arc4random() / ARC4RANDOM_MAX);
+        int randomNumber = ((arc4random() % 2) + 1) - 1  ;
 
         self.colors = [[NSArray alloc] initWithObjects:redBubbleSprite, greenBubbleSprite, nil];
         self.sprite = [[CCSprite alloc] initWithFile:[colors objectAtIndex:randomNumber]];

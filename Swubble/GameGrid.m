@@ -11,6 +11,7 @@
 @implementation GameGrid
 
 @synthesize grid;
+@synthesize layerOrigin;
 
 +(GameGrid *) initWithDimensions: (CGPoint) dimensions
 {
@@ -23,7 +24,6 @@
 {
     if( (self=[super init]) ) {
         self.grid = [self getNewGrid: dimensions];
-    
     }
 	return self;
 }

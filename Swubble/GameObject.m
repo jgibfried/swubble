@@ -10,9 +10,6 @@
 
 @implementation GameObject
 
-@synthesize leftGrid;
-@synthesize rightGrid;
-
 @synthesize gameTimeLeft;
 @synthesize gameTimeSpent;
 @synthesize totalScore;
@@ -21,23 +18,60 @@
 
 @synthesize gameTimer;
 
-- (GameObject *)startGame
-{
-    [self startTimeClock];
-    return self;
-}
-
 - (id)init
 {
     if( (self=[super init]) ) {
         self.gameTimeLeft = gameTimeDefault;
-        self.rightGrid = [GameGrid initWithDimensions:CGPointMake(gameGridSizeWidth, gameGridSizeHeight)];
-        self.leftGrid = [GameGrid initWithDimensions:CGPointMake(gameGridSizeWidth, gameGridSizeHeight)];
-	}
+        self.grids = [NSArray arrayWithObjects:[GameGrid initWithDimensions:CGPointMake(gameGridSizeWidth, gameGridSizeHeight)], [GameGrid initWithDimensions:CGPointMake(gameGridSizeWidth, gameGridSizeHeight)], nil];
+    }
 	return self;
 }
 
-- (void) startTimeClock
+- (void)startGame
+{
+    [self startTimeClock];
+}
+
+- (void)populateGrids
+{
+    for(GameGrid *grid in self.grids)
+    {
+        for(NSMutableArray *column in grid.grid)
+        {
+            for (GameGridCell *cell in column)
+            {
+                cell.bubble = [[Bubble alloc] init];
+            }
+        }
+    }
+}
+
+
+- (void)drawGridsOnLayer: (CCLayer *)layer atOrigin: (CGPoint) origin
+{
+    [self populateGrids];
+    float xPosition = origin.x;
+    float yPosition = origin.y;
+    
+    for(GameGrid *grid in self.grids)
+    {
+        for(NSMutableArray *column in grid.grid)
+        {
+            for (GameGridCell *cell in column)
+            {
+                cell.bubble.sprite.position = ccp(xPosition, yPosition);
+                [layer addChild: cell.bubble.sprite];
+                yPosition = (yPosition + gameGridCellHeight);
+            }
+            yPosition = origin.y;
+            xPosition = (xPosition + gameGridCellWidth);
+        }
+        xPosition = (xPosition + gameGridCellWidth);
+    }
+}
+
+
+- (void)startTimeClock
 {
     gameTimer = [NSTimer scheduledTimerWithTimeInterval:1
                                                  target:self

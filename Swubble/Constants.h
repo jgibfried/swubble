@@ -16,6 +16,14 @@
 #define greenBubbleSprite  @"greenBubble.png"
 
 #define gameTimeDefault 120
-#define gameGridSizeHeight 20
-#define gameGridSizeWidth  20
+
+#define gameGridSizeHeight 10
+#define gameGridSizeWidth  6
+
+#define gameGridCellHeight 60 // points
+#define gameGridCellWidth  60 // points
+
+#define gameGridOffsetY    80 // points
+#define gameGridOffsetX    96 // points
+
 #define difficultyLevels   5
