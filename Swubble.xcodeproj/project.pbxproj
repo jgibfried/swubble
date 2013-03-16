@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A02003316F4A9E200F6363C /* GameGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02003216F4A9E200F6363C /* GameGrid.m */; };
+		3A02003616F4ABFC00F6363C /* GameGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02003516F4ABFC00F6363C /* GameGridCell.m */; };
 		3A4C688C16E947FA0014DD8E /* menuBackgroundImage-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A4C688716E947FA0014DD8E /* menuBackgroundImage-568h.png */; };
 		3A4C688D16E947FA0014DD8E /* menuBackgroundImage-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A4C688816E947FA0014DD8E /* menuBackgroundImage-hd.png */; };
 		3A4C688E16E947FA0014DD8E /* menuBackgroundImage-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A4C688916E947FA0014DD8E /* menuBackgroundImage-ipad.png */; };
@@ -163,6 +165,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A02003116F4A9E200F6363C /* GameGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameGrid.h; sourceTree = "<group>"; };
+		3A02003216F4A9E200F6363C /* GameGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameGrid.m; sourceTree = "<group>"; };
+		3A02003416F4ABFC00F6363C /* GameGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameGridCell.h; sourceTree = "<group>"; };
+		3A02003516F4ABFC00F6363C /* GameGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameGridCell.m; sourceTree = "<group>"; };
 		3A4C688716E947FA0014DD8E /* menuBackgroundImage-568h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menuBackgroundImage-568h.png"; path = "Resources/menuBackgroundImage-568h.png"; sourceTree = "<group>"; };
 		3A4C688816E947FA0014DD8E /* menuBackgroundImage-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menuBackgroundImage-hd.png"; path = "Resources/menuBackgroundImage-hd.png"; sourceTree = "<group>"; };
 		3A4C688916E947FA0014DD8E /* menuBackgroundImage-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menuBackgroundImage-ipad.png"; path = "Resources/menuBackgroundImage-ipad.png"; sourceTree = "<group>"; };
@@ -551,6 +557,10 @@
 				3AE0B1A516EFE68F00636BC6 /* GameObject.m */,
 				3AE0B1A816F28C5800636BC6 /* Bubble.h */,
 				3AE0B1A916F28C5800636BC6 /* Bubble.m */,
+				3A02003116F4A9E200F6363C /* GameGrid.h */,
+				3A02003216F4A9E200F6363C /* GameGrid.m */,
+				3A02003416F4ABFC00F6363C /* GameGridCell.h */,
+				3A02003516F4ABFC00F6363C /* GameGridCell.m */,
 			);
 			path = Swubble;
 			sourceTree = "<group>";
@@ -1213,6 +1223,8 @@
 				3AE0B1A316EFE4FD00636BC6 /* GameEngine.m in Sources */,
 				3AE0B1A616EFE68F00636BC6 /* GameObject.m in Sources */,
 				3AE0B1AA16F28C5900636BC6 /* Bubble.m in Sources */,
+				3A02003316F4A9E200F6363C /* GameGrid.m in Sources */,
+				3A02003616F4ABFC00F6363C /* GameGridCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

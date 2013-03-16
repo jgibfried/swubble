@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GameGrid.h"
 
 @interface GameObject : NSObject
 
@@ -17,6 +18,9 @@
 
 @property (nonatomic) int gameTimeSpent;
 @property (nonatomic) int gameTimeLeft;
+
+@property (nonatomic, strong) GameGrid *leftGrid;
+@property (nonatomic, strong) GameGrid *rightGrid;
 
 @property (nonatomic, strong) NSTimer *gameTimer;
 

@@ -15,6 +15,7 @@
 #define redBubbleSprite    @"redBubble.png"
 #define greenBubbleSprite  @"greenBubble.png"
 
+#define gameTimeDefault 120
 #define gameGridSizeHeight 20
 #define gameGridSizeWidth  20
 #define difficultyLevels   5
