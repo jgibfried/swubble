@@ -96,6 +96,11 @@
         [gameTimer invalidate]; 
 }
 
+- (int) oppositeGridNumber: (int) idx
+{
+    return idx == 0 ? 1 : 0;
+}
+
 - (GameGrid *)getOppositeGrid: (int) originalIndex
 {
     if (originalIndex == 0) {
@@ -105,27 +110,41 @@
     }
 }
 
+- (GameGridCell *) cellOnGrid: (int) gridNumber atPosition: (CGPoint) position
+{
+    GameGrid *grid = [self.grids objectAtIndex:gridNumber];
+    return [grid getCellForPosition:position];
+}
+
+- (void) animateSwap: (GameGridCell *) cell1 withCell: (GameGridCell *) cell2
+{
+    Bubble *thisBubble = cell1.bubble;
+    Bubble *bubbleToSwap = cell2.bubble;
+    CGPoint originalPosition = thisBubble.position;
+    
+    int xMove = bubbleToSwap.position.x-originalPosition.x;
+    int yMove = bubbleToSwap.position.y-originalPosition.y;
+    
+    [thisBubble runAction:[CCMoveBy actionWithDuration:0.5 position:ccp(xMove, yMove)]];
+    [bubbleToSwap runAction:[CCMoveBy actionWithDuration:0.5 position:ccp(-xMove, -yMove)]];
+}
+
 - (void) bubbleSwitchGrid:(Bubble *) thisBubble {
     
     Bubble *originalBubble = thisBubble;
-    CGPoint originalPosition = thisBubble.position;
+    
+    GameGridCell *originalCell =  [self cellOnGrid:thisBubble.gridNumber atPosition:thisBubble.cellPosition];
+    
     int originalGridnumber = thisBubble.gridNumber;
     
-    GameGrid *otherGrid = [self getOppositeGrid:thisBubble.gridNumber];
-    GameGridCell *cellToSwap = [otherGrid getCellForPosition:thisBubble.cellPosition];
+    GameGridCell *cellToSwap =  [self cellOnGrid:[self oppositeGridNumber:thisBubble.gridNumber] atPosition:thisBubble.cellPosition];
     
-    Bubble *bubbleToSwap = cellToSwap.bubble;
+    [self animateSwap:originalCell withCell:cellToSwap];
     
-    [thisBubble setPosition:bubbleToSwap.position];
-    [bubbleToSwap setPosition:originalPosition];
+    thisBubble.gridNumber = cellToSwap.bubble.gridNumber;
+    cellToSwap.bubble.gridNumber = originalGridnumber;
     
-    GameGrid *thisGrid = [self.grids objectAtIndex:thisBubble.gridNumber];
-    GameGridCell *originalCell = [thisGrid getCellForPosition:thisBubble.cellPosition];
-
-    thisBubble.gridNumber = bubbleToSwap.gridNumber;
-    bubbleToSwap.gridNumber = originalGridnumber;
-    
-    [originalCell setBubble: bubbleToSwap];
+    [originalCell setBubble: cellToSwap.bubble];
     [cellToSwap setBubble: originalBubble];    
 }
 
@@ -134,11 +153,9 @@
     Bubble *thisBubble = [data objectForKey:@"bubble"];
     DragDirection direction = [[data valueForKey:@"direction"] intValue];
     
-    CGPoint originalPosition = thisBubble.position;
     CGPoint originalCellPosition = thisBubble.cellPosition;
     
-    GameGrid *grid = [self.grids objectAtIndex:thisBubble.gridNumber];
-    GameGridCell *originalCell = [grid getCellForPosition:thisBubble.cellPosition];
+    GameGridCell *originalCell = [self cellOnGrid:thisBubble.gridNumber atPosition:thisBubble.cellPosition];
 
     CGPoint newPosition;
     switch (direction) {
@@ -163,17 +180,14 @@
     }
     
     if (newPosition.x >= 0 && newPosition.y >=0 && newPosition.x <= gameGridSizeWidth && newPosition.y <= gameGridSizeHeight){
-        GameGridCell *cellToSwap = [grid getCellForPosition:newPosition];
+        GameGridCell *cellToSwap = [self cellOnGrid:thisBubble.gridNumber atPosition:newPosition];
         
-        Bubble *bubbleToSwap = cellToSwap.bubble;
+        [self animateSwap:originalCell withCell:cellToSwap];
         
-        [thisBubble setPosition:bubbleToSwap.position];
-        [bubbleToSwap setPosition:originalPosition];
+        thisBubble.cellPosition = cellToSwap.bubble.cellPosition;
+        cellToSwap.bubble.cellPosition = originalCellPosition;
         
-        thisBubble.cellPosition = bubbleToSwap.cellPosition;
-        bubbleToSwap.cellPosition = originalCellPosition;
-        
-        [originalCell setBubble: bubbleToSwap];
+        [originalCell setBubble: cellToSwap.bubble];
         [cellToSwap setBubble: thisBubble];
     }
 }
