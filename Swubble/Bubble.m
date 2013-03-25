@@ -92,7 +92,6 @@ CGPoint startLocation;
     
     CGFloat distance = [self distanceBetweenPoint:startLocation andPoint:currentLocation];
     if (distance >= gameBubbleDragDistance && !dragged) {
-        NSLog(@"%f distance", distance);
         dragged = YES;
         DragDirection direction = [self determineDirection:startLocation andEnd:currentLocation];
         

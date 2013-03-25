@@ -162,18 +162,20 @@
             break;
     }
     
-    GameGridCell *cellToSwap = [grid getCellForPosition:newPosition];
-    
-    Bubble *bubbleToSwap = cellToSwap.bubble;
-    
-    [thisBubble setPosition:bubbleToSwap.position];
-    [bubbleToSwap setPosition:originalPosition];
-    
-    thisBubble.cellPosition = bubbleToSwap.cellPosition;
-    bubbleToSwap.cellPosition = originalCellPosition;
-    
-    [originalCell setBubble: bubbleToSwap];
-    [cellToSwap setBubble: thisBubble];
+    if (newPosition.x >= 0 && newPosition.y >=0 && newPosition.x <= gameGridSizeWidth && newPosition.y <= gameGridSizeHeight){
+        GameGridCell *cellToSwap = [grid getCellForPosition:newPosition];
+        
+        Bubble *bubbleToSwap = cellToSwap.bubble;
+        
+        [thisBubble setPosition:bubbleToSwap.position];
+        [bubbleToSwap setPosition:originalPosition];
+        
+        thisBubble.cellPosition = bubbleToSwap.cellPosition;
+        bubbleToSwap.cellPosition = originalCellPosition;
+        
+        [originalCell setBubble: bubbleToSwap];
+        [cellToSwap setBubble: thisBubble];
+    }
 }
 
 @end
