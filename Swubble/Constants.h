@@ -26,4 +26,13 @@
 #define gameGridOffsetY    80 // points
 #define gameGridOffsetX    96 // points
 
+#define gameBubbleDragDistance  60 // points
+
 #define difficultyLevels   5
+
+typedef enum dragDirection {
+    kDirectionUp,
+    kDirectionDown,
+    kDirectionLeft,
+    kDirectionRight,
+} DragDirection;

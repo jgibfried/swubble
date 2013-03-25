@@ -109,6 +109,7 @@
     
     Bubble *originalBubble = thisBubble;
     CGPoint originalPosition = thisBubble.position;
+    int originalGridnumber = thisBubble.gridNumber;
     
     GameGrid *otherGrid = [self getOppositeGrid:thisBubble.gridNumber];
     GameGridCell *cellToSwap = [otherGrid getCellForPosition:thisBubble.cellPosition];
@@ -121,11 +122,58 @@
     GameGrid *thisGrid = [self.grids objectAtIndex:thisBubble.gridNumber];
     GameGridCell *originalCell = [thisGrid getCellForPosition:thisBubble.cellPosition];
 
-    bubbleToSwap.gridNumber = originalBubble.gridNumber;
-    originalBubble.gridNumber = bubbleToSwap.gridNumber;
+    thisBubble.gridNumber = bubbleToSwap.gridNumber;
+    bubbleToSwap.gridNumber = originalGridnumber;
     
     [originalCell setBubble: bubbleToSwap];
     [cellToSwap setBubble: originalBubble];    
+}
+
+- (void) bubbleSwap: (NSDictionary *) data
+{
+    Bubble *thisBubble = [data objectForKey:@"bubble"];
+    DragDirection direction = [[data valueForKey:@"direction"] intValue];
+    
+    CGPoint originalPosition = thisBubble.position;
+    CGPoint originalCellPosition = thisBubble.cellPosition;
+    
+    GameGrid *grid = [self.grids objectAtIndex:thisBubble.gridNumber];
+    GameGridCell *originalCell = [grid getCellForPosition:thisBubble.cellPosition];
+
+    CGPoint newPosition;
+    switch (direction) {
+        case kDirectionDown:
+            newPosition = CGPointMake(originalCell.position.x, originalCell.position.y-1);
+            break;
+        
+        case kDirectionUp:
+            newPosition = CGPointMake(originalCell.position.x, originalCell.position.y+1);
+            break;
+        
+        case kDirectionLeft:
+            newPosition = CGPointMake(originalCell.position.x+1, originalCell.position.y);
+            break;
+
+        case kDirectionRight:
+            newPosition = CGPointMake(originalCell.position.x-1, originalCell.position.y);
+            break;
+            
+        default:
+            break;
+    }
+    
+    GameGridCell *cellToSwap = [grid getCellForPosition:newPosition];
+    
+    Bubble *bubbleToSwap = cellToSwap.bubble;
+    
+    [thisBubble setPosition:bubbleToSwap.position];
+    [bubbleToSwap setPosition:originalPosition];
+    
+    thisBubble.cellPosition = bubbleToSwap.cellPosition;
+    bubbleToSwap.cellPosition = originalCellPosition;
+    
+    [originalCell setBubble: bubbleToSwap];
+    [cellToSwap setBubble: thisBubble];
 }
 
 @end
