@@ -10,11 +10,16 @@
 #import "cocos2d.h"
 #import "Constants.h"
 
-@interface Bubble : NSObject
+@interface Bubble : CCSprite <CCTouchOneByOneDelegate> {
+    id touchDelegate;
+}
+@property (nonatomic) int bubbleId;
 
-@property (nonatomic, strong) CCSprite *sprite;
-@property (nonatomic, strong) NSArray *colors;
+@property (nonatomic, assign) id touchDelegate;
+@property (nonatomic, readonly) CGRect boundingBox;
+@property (nonatomic) CGPoint cellPosition;
+@property (nonatomic) int gridNumber;
 
-+ (Bubble *) getNewBubble;
++ (Bubble *) initWithFile:(NSString *) file;
 
 @end

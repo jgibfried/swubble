@@ -10,23 +10,76 @@
 
 @implementation Bubble
 
-@synthesize sprite;
-@synthesize colors;
+@synthesize bubbleId;
 
--(id) init
+@synthesize cellPosition;
+@synthesize touchDelegate;
+@synthesize gridNumber;
+
+-(id) initWithFile: (NSString *) file
 {
-	if( (self=[super init]) ) {
-        int randomNumber = ((arc4random() % 2) + 1) - 1  ;
+	if( (self=[super initWithFile:file]) ) {
 
-        self.colors = [[NSArray alloc] initWithObjects:redBubbleSprite, greenBubbleSprite, nil];
-        self.sprite = [[CCSprite alloc] initWithFile:[colors objectAtIndex:randomNumber]];
     }
 	return self;
 }
 
-+ (Bubble *) getNewBubble
++ (Bubble *) initWithFile: (NSString *) file
 {
-    return [[Bubble alloc] init];
+    return [[Bubble alloc] initWithFile:file];
+}
+
+- (CGRect)boundingBoxInPixels
+{
+    CGSize s = [self.texture contentSizeInPixels];
+    return CGRectMake(-s.width / 2, -s.height / 2, s.width, s.height);
+}
+
+- (CGRect)boundingBox
+{
+    CGSize s = [self.texture contentSize];
+    return CGRectMake(-s.width / 2, -s.height / 2, s.width, s.height);
+}
+
+
+- (BOOL)containsTouchLocation:(UITouch *)touch
+{
+    return CGRectContainsPoint(self.boundingBoxInPixels, [self convertTouchToNodeSpaceAR:touch]);
+}
+
+- (void)onEnter
+{
+    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
+    [super onEnter];
+}
+
+
+- (void)onExit
+{
+    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self ];
+    [super onExit];
+}
+
+-(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    if ( ![self containsTouchLocation:touch] ) return NO;
+    return YES;
+}
+
+-(void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    if (self.touchDelegate == nil) return;
+    [self.touchDelegate performSelector:@selector(bubbleSwitchGrid:) withObject:self];
+}
+
+-(void) ccTouchCancelled:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    
+}
+
+-(void) ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    
 }
 
 @end

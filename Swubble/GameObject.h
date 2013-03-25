@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "GameGrid.h"
+#import "Bubble.h"
 
 @interface GameObject : NSObject
+
+@property (nonatomic, strong) NSArray *spriteColors;
 
 @property (nonatomic) int totalBonuses;
 @property (nonatomic) int totalScore;

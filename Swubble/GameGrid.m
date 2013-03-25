@@ -35,7 +35,9 @@
         // insert row
         NSMutableArray *row = [[NSMutableArray alloc] init];
         for (int j=0; j<=dimensions.y; j++) {
-            [row insertObject:[[GameGridCell alloc] init] atIndex:j];
+            GameGridCell *newGridCell = [[GameGridCell alloc] init];
+            newGridCell.position = CGPointMake(i, j);
+            [row insertObject:newGridCell atIndex:j];
         }
         [columns insertObject:row atIndex:i];
     }

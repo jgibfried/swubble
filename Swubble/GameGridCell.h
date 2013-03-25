@@ -12,7 +12,7 @@
 
 @interface GameGridCell : NSObject
 
-@property (nonatomic) CGPoint posiiton;
+@property (nonatomic) CGPoint position;
 @property (nonatomic, strong) Bubble *bubble;
 
 @end
