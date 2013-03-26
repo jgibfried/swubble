@@ -15,11 +15,13 @@
 }
 @property (nonatomic) int bubbleId;
 
+@property (nonatomic, strong) NSString *type;
+
 @property (nonatomic, assign) id touchDelegate;
 @property (nonatomic, readonly) CGRect boundingBox;
 @property (nonatomic) CGPoint cellPosition;
 @property (nonatomic) int gridNumber;
 
-+ (Bubble *) initWithFile:(NSString *) file;
++ (Bubble *) initWithData: (NSDictionary *) data;
 
 @end

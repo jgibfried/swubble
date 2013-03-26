@@ -21,7 +21,6 @@
 - (id)init
 {
     if( (self=[super init]) ) {
-        self.spriteColors = [[NSArray alloc] initWithObjects:redBubbleSprite, greenBubbleSprite, nil];
         self.gameTimeLeft = gameTimeDefault;
         self.grids = [NSArray arrayWithObjects:[GameGrid initWithDimensions:CGPointMake(gameGridSizeWidth, gameGridSizeHeight)], [GameGrid initWithDimensions:CGPointMake(gameGridSizeWidth, gameGridSizeHeight)], nil];
     }
@@ -31,6 +30,14 @@
 - (void)startGame
 {
     [self startTimeClock];
+}
+
+- (NSArray *) bubbleTypes
+{
+    NSDictionary *type1 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"1", redBubbleSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
+    NSDictionary *type2 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"2", greenBubbleSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
+    
+    return [[NSArray alloc] initWithObjects:type1, type2, nil];
 }
 
 - (void)populateGrids
@@ -43,7 +50,7 @@
             {
                 int randomNumber = ((arc4random() % 2) + 1) - 1  ;
                 
-                cell.bubble = [[Bubble alloc] initWithFile:[self.spriteColors objectAtIndex:randomNumber]];
+                cell.bubble = [Bubble initWithData:[self.bubbleTypes objectAtIndex:randomNumber]];
                 cell.bubble.bubbleId = bubbleId++;
                 cell.bubble.touchDelegate = self;
                 cell.bubble.cellPosition = cell.position;
@@ -110,13 +117,70 @@
     }
 }
 
+-(NSArray *) getVerticalMatchesForCell: (GameGridCell *)cell fromCell:(GameGridCell *)cellToSwap
+{
+    NSMutableArray *verticleMatches = [[NSMutableArray alloc] init];
+    
+    [verticleMatches arrayByAddingObjectsFromArray:[self checkForMatch:cell.bubble.type inDirection:kDirectionUp fromCell:cellToSwap withArray:verticleMatches]];
+    [verticleMatches arrayByAddingObjectsFromArray:[self checkForMatch:cell.bubble.type inDirection:kDirectionDown fromCell:cellToSwap withArray:verticleMatches]];
+    
+    return verticleMatches;
+}
+
+-(NSArray *) getHorizontalMatchesForCell: (GameGridCell *)cell fromCell:(GameGridCell *)cellToSwap
+{
+    NSMutableArray *horizontalMatches = [[NSMutableArray alloc] init];
+    
+    [horizontalMatches arrayByAddingObjectsFromArray:[self checkForMatch:cell.bubble.type inDirection:kDirectionLeft fromCell:cellToSwap withArray:horizontalMatches]];
+    [horizontalMatches arrayByAddingObjectsFromArray:[self checkForMatch:cell.bubble.type inDirection:kDirectionRight fromCell:cellToSwap withArray:horizontalMatches]];
+    
+    return horizontalMatches;
+}
+
+
+-(NSArray *) checkForMatch: (NSString *) type inDirection: (DragDirection) direction fromCell:(GameGridCell *)cell withArray: (NSMutableArray *) matches
+{
+    CGPoint newPosition;
+    switch (direction) {
+        case kDirectionDown:
+            newPosition = CGPointMake(cell.position.x, cell.position.y-1);
+            break;
+            
+        case kDirectionUp:
+            newPosition = CGPointMake(cell.position.x, cell.position.y+1);
+            break;
+            
+        case kDirectionLeft:
+            newPosition = CGPointMake(cell.position.x+1, cell.position.y);
+            break;
+            
+        case kDirectionRight:
+            newPosition = CGPointMake(cell.position.x-1, cell.position.y);
+            break;
+            
+        default:
+            break;
+    }
+
+    if (newPosition.x >= 0 && newPosition.y >=0 && newPosition.x <= gameGridSizeWidth && newPosition.y <= gameGridSizeHeight){
+        GameGridCell *cellToCheck = [self cellOnGrid:cell.bubble.gridNumber atPosition:newPosition];
+    
+        if ([type isEqualToString:cellToCheck.bubble.type]) {
+            [matches addObject:cellToCheck];
+            return [self checkForMatch:type inDirection:direction fromCell:cellToCheck withArray:matches];
+        }
+    }
+    return matches;
+}
+
+
 - (GameGridCell *) cellOnGrid: (int) gridNumber atPosition: (CGPoint) position
 {
     GameGrid *grid = [self.grids objectAtIndex:gridNumber];
     return [grid getCellForPosition:position];
 }
 
-- (void) animateSwap: (GameGridCell *) cell1 withCell: (GameGridCell *) cell2
+- (void) animateSwap: (GameGridCell *) cell1 withCell: (GameGridCell *) cell2 withHandler: (HandlerBlock) handler inReverse: (BOOL) reverse
 {
     Bubble *thisBubble = cell1.bubble;
     Bubble *bubbleToSwap = cell2.bubble;
@@ -125,8 +189,19 @@
     int xMove = bubbleToSwap.position.x-originalPosition.x;
     int yMove = bubbleToSwap.position.y-originalPosition.y;
     
-    [thisBubble runAction:[CCMoveBy actionWithDuration:0.5 position:ccp(xMove, yMove)]];
-    [bubbleToSwap runAction:[CCMoveBy actionWithDuration:0.5 position:ccp(-xMove, -yMove)]];
+    [thisBubble runAction:
+         [CCSequence actions:
+         [CCCallBlock actionWithBlock:^(void){
+             if (reverse) {
+                 [thisBubble runAction:[CCMoveBy actionWithDuration:0.5 position:ccp(-xMove, -yMove)]];
+                 [bubbleToSwap runAction:[CCMoveBy actionWithDuration:0.5 position:ccp(xMove, yMove)]];
+             }else{
+                 [thisBubble runAction:[CCMoveBy actionWithDuration:0.5 position:ccp(xMove, yMove)]];
+                 [bubbleToSwap runAction:[CCMoveBy actionWithDuration:0.5 position:ccp(-xMove, -yMove)]];
+             }
+         }],
+         [CCCallBlock actionWithBlock:handler],
+         nil]];
 }
 
 - (void) bubbleSwitchGrid:(Bubble *) thisBubble {
@@ -139,13 +214,21 @@
     
     GameGridCell *cellToSwap =  [self cellOnGrid:[self oppositeGridNumber:thisBubble.gridNumber] atPosition:thisBubble.cellPosition];
     
-    [self animateSwap:originalCell withCell:cellToSwap];
-    
-    thisBubble.gridNumber = cellToSwap.bubble.gridNumber;
-    cellToSwap.bubble.gridNumber = originalGridnumber;
-    
-    [originalCell setBubble: cellToSwap.bubble];
-    [cellToSwap setBubble: originalBubble];    
+    [self animateSwap:originalCell withCell:cellToSwap withHandler:^(void){
+        
+        NSArray *vMatches = [self getVerticalMatchesForCell:originalCell fromCell:cellToSwap];
+        NSArray *hMatches = [self getHorizontalMatchesForCell:originalCell fromCell:cellToSwap];
+        
+        if ([vMatches count] >= 2 || [hMatches count] >= 2) {
+            thisBubble.gridNumber = cellToSwap.bubble.gridNumber;
+            cellToSwap.bubble.gridNumber = originalGridnumber;
+        
+            [originalCell setBubble: cellToSwap.bubble];
+            [cellToSwap setBubble: originalBubble];
+        } else {
+            [self animateSwap:originalCell withCell:cellToSwap withHandler:^(void){} inReverse:YES];
+        }
+    } inReverse:NO];
 }
 
 - (void) bubbleSwap: (NSDictionary *) data
@@ -182,13 +265,21 @@
     if (newPosition.x >= 0 && newPosition.y >=0 && newPosition.x <= gameGridSizeWidth && newPosition.y <= gameGridSizeHeight){
         GameGridCell *cellToSwap = [self cellOnGrid:thisBubble.gridNumber atPosition:newPosition];
         
-        [self animateSwap:originalCell withCell:cellToSwap];
+        [self animateSwap:originalCell withCell:cellToSwap withHandler:^(void){
+            NSArray *vMatches = [self getVerticalMatchesForCell:originalCell fromCell:cellToSwap];
+            NSArray *hMatches = [self getHorizontalMatchesForCell:originalCell fromCell:cellToSwap];
+            
+            if ([vMatches count] >= 2 || [hMatches count] >= 2) {
+                thisBubble.cellPosition = cellToSwap.bubble.cellPosition;
+                cellToSwap.bubble.cellPosition = originalCellPosition;
+                
+                [originalCell setBubble: cellToSwap.bubble];
+                [cellToSwap setBubble: thisBubble];
+            } else {
+                [self animateSwap:originalCell withCell:cellToSwap withHandler:^(void){} inReverse:YES];
+            }
+        } inReverse:NO];
         
-        thisBubble.cellPosition = cellToSwap.bubble.cellPosition;
-        cellToSwap.bubble.cellPosition = originalCellPosition;
-        
-        [originalCell setBubble: cellToSwap.bubble];
-        [cellToSwap setBubble: thisBubble];
     }
 }
 

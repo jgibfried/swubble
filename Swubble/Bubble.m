@@ -12,6 +12,8 @@
 
 @synthesize bubbleId;
 
+@synthesize type;
+
 @synthesize cellPosition;
 @synthesize touchDelegate;
 @synthesize gridNumber;
@@ -19,17 +21,20 @@
 BOOL dragged = NO;
 CGPoint startLocation;
 
--(id) initWithFile: (NSString *) file
+-(id) initWithData: (NSDictionary *) data
 {
-	if( (self=[super initWithFile:file]) ) {
-
+    NSString *_file = [data objectForKey:@"file"];
+    NSString *_type = [data objectForKey:@"type"];
+    
+	if((self=[super initWithFile: _file])) {
+        self.type = _type;
     }
 	return self;
 }
 
-+ (Bubble *) initWithFile: (NSString *) file
++ (Bubble *) initWithData: (NSDictionary *) data
 {
-    return [[Bubble alloc] initWithFile:file];
+    return [[Bubble alloc] initWithData:data];
 }
 
 - (CGRect)boundingBoxInPixels

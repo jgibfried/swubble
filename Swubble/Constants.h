@@ -36,3 +36,5 @@ typedef enum dragDirection {
     kDirectionLeft,
     kDirectionRight,
 } DragDirection;
+
+typedef void (^HandlerBlock)(void);

@@ -12,7 +12,7 @@
 
 @interface GameObject : NSObject
 
-@property (nonatomic, strong) NSArray *spriteColors;
+@property (nonatomic, strong) NSArray *bubbleTypes;
 
 @property (nonatomic) int totalBonuses;
 @property (nonatomic) int totalScore;
