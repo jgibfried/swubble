@@ -143,22 +143,18 @@
     CGPoint newPosition;
     switch (direction) {
         case kDirectionDown:
-            NSLog(@"Direction: Down");
             newPosition = CGPointMake(cell.position.x, cell.position.y-1);
             break;
             
         case kDirectionUp:
-            NSLog(@"Direction: Up");
             newPosition = CGPointMake(cell.position.x, cell.position.y+1);
             break;
             
         case kDirectionLeft:
-            NSLog(@"Direction: Left");
             newPosition = CGPointMake(cell.position.x+1, cell.position.y);
             break;
             
         case kDirectionRight:
-            NSLog(@"Direction: Right");
             newPosition = CGPointMake(cell.position.x-1, cell.position.y);
             break;
             
