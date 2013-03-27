@@ -158,6 +158,8 @@
 		3AA18F2C16E8E6EC009A3AC3 /* GameBackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA18F2B16E8E6EC009A3AC3 /* GameBackgroundLayer.m */; };
 		3AA18F2F16E8E702009A3AC3 /* MenuBackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA18F2E16E8E702009A3AC3 /* MenuBackgroundLayer.m */; };
 		3AA18F3516E8F4B2009A3AC3 /* BaseLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA18F3416E8F4B2009A3AC3 /* BaseLayer.m */; };
+		3AC1E39117035B40008A8435 /* yellowBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AC1E38F17035B40008A8435 /* yellowBubble.png */; };
+		3AC1E39217035B40008A8435 /* yellowBubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AC1E39017035B40008A8435 /* yellowBubble@2x.png */; };
 		3AE0B19716EE909500636BC6 /* GameGridLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE0B19616EE909500636BC6 /* GameGridLayer.m */; };
 		3AE0B19B16EE92FE00636BC6 /* greenBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AE0B19916EE92FE00636BC6 /* greenBubble.png */; };
 		3AE0B19C16EE92FE00636BC6 /* redBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AE0B19A16EE92FE00636BC6 /* redBubble.png */; };
@@ -475,6 +477,8 @@
 		3AA18F3416E8F4B2009A3AC3 /* BaseLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseLayer.m; sourceTree = "<group>"; };
 		3AA18F3B16E92491009A3AC3 /* DeviceSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceSettings.h; sourceTree = "<group>"; };
 		3AA18F3C16E924B2009A3AC3 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		3AC1E38F17035B40008A8435 /* yellowBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowBubble.png; sourceTree = "<group>"; };
+		3AC1E39017035B40008A8435 /* yellowBubble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yellowBubble@2x.png"; sourceTree = "<group>"; };
 		3AE0B19516EE909500636BC6 /* GameGridLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameGridLayer.h; sourceTree = "<group>"; };
 		3AE0B19616EE909500636BC6 /* GameGridLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameGridLayer.m; sourceTree = "<group>"; };
 		3AE0B19916EE92FE00636BC6 /* greenBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenBubble.png; sourceTree = "<group>"; };
@@ -990,6 +994,8 @@
 		3AE0B19816EE92FE00636BC6 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
+				3AC1E38F17035B40008A8435 /* yellowBubble.png */,
+				3AC1E39017035B40008A8435 /* yellowBubble@2x.png */,
 				3A46FD621700E178005B583A /* greenBubble@2x.png */,
 				3A46FD631700E178005B583A /* redBubble@2x.png */,
 				3AE0B19916EE92FE00636BC6 /* greenBubble.png */,
@@ -1099,6 +1105,8 @@
 				3AE0B19C16EE92FE00636BC6 /* redBubble.png in Resources */,
 				3A46FD641700E178005B583A /* greenBubble@2x.png in Resources */,
 				3A46FD651700E178005B583A /* redBubble@2x.png in Resources */,
+				3AC1E39117035B40008A8435 /* yellowBubble.png in Resources */,
+				3AC1E39217035B40008A8435 /* yellowBubble@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

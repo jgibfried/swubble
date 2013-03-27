@@ -36,8 +36,9 @@
 {
     NSDictionary *type1 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"1", redBubbleSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
     NSDictionary *type2 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"2", greenBubbleSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
+    NSDictionary *type3 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"3", yellowBubbleSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
     
-    return [[NSArray alloc] initWithObjects:type1, type2, nil];
+    return [[NSArray alloc] initWithObjects:type1, type2, type3, nil];
 }
 
 - (void)populateGrids
@@ -48,7 +49,7 @@
         {
             for (GameGridCell *cell in column)
             {
-                int randomNumber = ((arc4random() % 2) + 1) - 1  ;
+                int randomNumber = ((arc4random() % 3) + 1) - 1  ;
                 
                 cell.bubble = [Bubble initWithData:[self.bubbleTypes objectAtIndex:randomNumber]];
                 cell.bubble.bubbleId = bubbleId++;

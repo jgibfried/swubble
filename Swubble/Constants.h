@@ -14,6 +14,7 @@
 
 #define redBubbleSprite    @"redBubble.png"
 #define greenBubbleSprite  @"greenBubble.png"
+#define yellowBubbleSprite @"yellowBubble.png"
 
 #define gameTimeDefault 120
 
