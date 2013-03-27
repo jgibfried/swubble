@@ -121,7 +121,7 @@
 -(NSArray *) getVerticalMatchesForCell: (GameGridCell *)cell 
 {
     NSMutableArray *verticleMatches = [[NSMutableArray alloc] init];
- 
+    [verticleMatches addObject:cell];
     [verticleMatches arrayByAddingObjectsFromArray:[self checkForMatch:cell inDirection:kDirectionUp withArray:verticleMatches]];
     [verticleMatches arrayByAddingObjectsFromArray:[self checkForMatch:cell inDirection:kDirectionDown withArray:verticleMatches]];
 
@@ -131,7 +131,7 @@
 -(NSArray *) getHorizontalMatchesForCell: (GameGridCell *)cell 
 {
     NSMutableArray *horizontalMatches = [[NSMutableArray alloc] init];
-
+    [horizontalMatches addObject:cell];
     [horizontalMatches arrayByAddingObjectsFromArray:[self checkForMatch:cell inDirection:kDirectionLeft withArray:horizontalMatches]];
     [horizontalMatches arrayByAddingObjectsFromArray:[self checkForMatch:cell inDirection:kDirectionRight withArray:horizontalMatches]];
 
@@ -209,6 +209,16 @@
          nil]];
 }
 
+- (void) destroyMatches: (NSArray *) matches
+{
+    for (GameGridCell *cell in matches) {
+        Bubble * bubble = cell.bubble;
+        [bubble.parent removeChild:bubble cleanup:YES];
+        
+        cell.bubble = nil;
+    }
+}
+
 - (void) bubbleSwitchGrid:(Bubble *) bubble {
     
     Bubble *bubble1 = bubble;
@@ -220,6 +230,10 @@
     GameGridCell *cell2 =  [self cellOnGrid:[self oppositeGridNumber:bubble1.gridNumber] atPosition:bubble1.cellPosition];
     
     Bubble *bubble2 = cell2.bubble;
+    
+    if (!bubble2) {
+        return;
+    }
     
     int bubble2GridNumber = bubble2.gridNumber;
     
@@ -235,7 +249,7 @@
         NSArray *vMatches2 = [self getVerticalMatchesForCell:cell2 ];
         NSArray *hMatches2 = [self getHorizontalMatchesForCell:cell2 ];
         
-        if ([vMatches2 count] < 2 && [hMatches2 count] < 2 && [vMatches1 count] < 2 && [hMatches1 count] < 2) {
+        if ([vMatches2 count] < 3 && [hMatches2 count] < 3 && [vMatches1 count] < 3 && [hMatches1 count] < 3) {
             [self animateSwap:cell1 withCell:cell2 withHandler:^(void){
                 bubble1.gridNumber = bubble1GridNumber;
                 bubble2.gridNumber = bubble2GridNumber;
@@ -243,6 +257,19 @@
                 [cell1 setBubble: bubble1];
                 [cell2 setBubble: bubble2];
             } inReverse:YES];
+        } else {
+            if ([vMatches1 count] >= 3) {
+                [self destroyMatches:vMatches1];
+            }
+            if ([vMatches2 count] >= 3) {
+                [self destroyMatches:vMatches2];
+            }
+            if ([hMatches1 count] >= 3) {
+                [self destroyMatches:hMatches1];
+            }
+            if ([hMatches2 count] >= 3) {
+                [self destroyMatches:hMatches2];
+            }
         }
     } inReverse:NO];
 }
@@ -282,6 +309,10 @@
         GameGridCell *cell2 = [self cellOnGrid:bubble1.gridNumber atPosition:newPosition];
     
         Bubble *bubble2 = cell2.bubble;
+    
+        if (!bubble2) {
+            return;
+        }
         
         CGPoint cell1Position = bubble1.cellPosition;
         CGPoint cell2Position = bubble2.cellPosition;
@@ -299,7 +330,7 @@
             NSArray *vMatches2 = [self getVerticalMatchesForCell:cell2 ];
             NSArray *hMatches2 = [self getHorizontalMatchesForCell:cell2 ];
             
-            if ([vMatches2 count] < 2 && [hMatches2 count] < 2 && [vMatches1 count] < 2 && [hMatches1 count] < 2) {
+            if ([vMatches2 count] < 3 && [hMatches2 count] < 3 && [vMatches1 count] < 3 && [hMatches1 count] < 3) {
                 [self animateSwap:cell1 withCell:cell2 withHandler:^(void){
                     bubble1.cellPosition = cell1Position;
                     bubble2.cellPosition = cell2Position;
@@ -308,6 +339,19 @@
                     [cell2 setBubble: bubble2];
                     
                 } inReverse:YES];
+            } else {
+                if ([vMatches1 count] >= 3) {
+                    [self destroyMatches:vMatches1];
+                }
+                if ([vMatches2 count] >= 3) {
+                    [self destroyMatches:vMatches2];
+                }
+                if ([hMatches1 count] >= 3) {
+                    [self destroyMatches:hMatches1];
+                }
+                if ([hMatches2 count] >= 3) {
+                    [self destroyMatches:hMatches2];
+                }
             }
         } inReverse:NO];
     }
