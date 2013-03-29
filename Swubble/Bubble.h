@@ -21,6 +21,7 @@
 @property (nonatomic, readonly) CGRect boundingBox;
 @property (nonatomic) CGPoint cellPosition;
 @property (nonatomic) int gridNumber;
+@property (nonatomic) BOOL moving;
 
 + (Bubble *) initWithData: (NSDictionary *) data;
 

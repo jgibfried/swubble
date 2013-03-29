@@ -12,6 +12,9 @@
 
 @interface GameObject : NSObject
 
+
+@property (nonatomic, strong) CCLayer *gameGridLayer;
+
 @property (nonatomic, strong) NSArray *bubbleTypes;
 
 @property (nonatomic) int totalBonuses;
@@ -28,6 +31,6 @@
 
 - (void)startGame;
 - (void)populateGrids;
-- (void)drawGridsOnLayer: (CCLayer *)layer atOrigin: (CGPoint) origin;
+- (void)drawGridsAtOrigin: (CGPoint) origin;
 
 @end

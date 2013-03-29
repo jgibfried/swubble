@@ -18,6 +18,8 @@
 @synthesize touchDelegate;
 @synthesize gridNumber;
 
+@synthesize moving;
+
 BOOL dragged = NO;
 CGPoint startLocation;
 
@@ -28,6 +30,7 @@ CGPoint startLocation;
     
 	if((self=[super initWithFile: _file])) {
         self.type = _type;
+        self.bubbleId = [self newUUID];
     }
 	return self;
 }
@@ -71,7 +74,8 @@ CGPoint startLocation;
 -(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
     if ( ![self containsTouchLocation:touch] ) return NO;
-    
+    if (self.moving) return NO;
+   
     dragged = NO;
     startLocation = [[CCDirector sharedDirector] convertToGL:[touch locationInView:[touch view]]];
     return YES;
@@ -136,6 +140,14 @@ CGPoint startLocation;
     }
     
     return direction;
+}
+
+- (NSString *) newUUID
+{
+    CFUUIDRef uuid = CFUUIDCreate(NULL);
+    NSString *uuidStr = ( NSString *)CFUUIDCreateString(NULL, uuid);
+    CFRelease(uuid);
+    return uuidStr;
 }
 
 @end

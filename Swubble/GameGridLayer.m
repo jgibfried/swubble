@@ -15,6 +15,7 @@
 {
 	if( (self=[super init]) ) {
         self.game = [[GameObject alloc] init];
+        self.game.gameGridLayer = self;
         [self setupGameGrid];
 	}
 	return self;
@@ -23,7 +24,7 @@
 - (void) setupGameGrid
 {
 //    CGSize size = [[CCDirector sharedDirector] winSize];
-    [self.game drawGridsOnLayer:self atOrigin:CGPointMake(gameGridOffsetX, gameGridOffsetY)];
+    [self.game drawGridsAtOrigin:CGPointMake(gameGridOffsetX, gameGridOffsetY)];
 }
 
 
