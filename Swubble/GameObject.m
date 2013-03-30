@@ -397,7 +397,7 @@
             [self animateSwap:cell1 withCell:cell2 withHandler:^(void){
                 [cell1 setBubble: bubble1];
                 [cell2 setBubble: bubble2];
-            } inReverse:NO];
+            }];
         } else {
             NSMutableArray *matchesToDestroy = [[NSMutableArray alloc] init];
             if ([vMatches1 count] >= 3) {
@@ -414,27 +414,27 @@
             }
             [self destroyMatches:matchesToDestroy];
         }
-    } inReverse:NO];
+    }];
 }
 
-- (void) animateSwap: (GameGridCell *) cell1 withCell: (GameGridCell *) cell2 withHandler: (HandlerBlock) handler inReverse: (BOOL) reverse
+- (void) animateSwap: (GameGridCell *) cell1 withCell: (GameGridCell *) cell2 withHandler: (HandlerBlock) handler
 {
     CGPoint cell1BubblePosition = cell1.bubblePosition;
     CGPoint cell2BubblePosition = cell2.bubblePosition;
+    [[CCDirector sharedDirector] touchDispatcher].dispatchEvents = NO;
     
     [cell1.bubble runAction:
      [CCSequence actions:
       [CCCallBlock actionWithBlock:^(void){
-         cell1.bubble.moving = YES;
-         cell2.bubble.moving = YES;
-         [cell1.bubble runAction:[CCMoveTo actionWithDuration:0.5 position:ccp(cell2BubblePosition.x, cell2BubblePosition.y)]];
-         [cell2.bubble runAction:[CCMoveTo actionWithDuration:0.5 position:ccp(cell1BubblePosition.x, cell1BubblePosition.y)]];
+         [cell1.bubble runAction:[CCMoveTo actionWithDuration:0.25 position:ccp(cell2BubblePosition.x, cell2BubblePosition.y)]];
+         [cell2.bubble runAction:[CCMoveTo actionWithDuration:0.25 position:ccp(cell1BubblePosition.x, cell1BubblePosition.y)]];
         }],
-      [CCDelayTime actionWithDuration:0.7],
+      [CCDelayTime actionWithDuration:0.5],
       [CCCallBlock actionWithBlock:^(void){
          cell1.bubble.moving = NO;
          cell2.bubble.moving = NO;
-        }],
+         [[CCDirector sharedDirector] touchDispatcher].dispatchEvents = YES;
+     }],
       [CCCallBlock actionWithBlock:handler],
       nil]];
 }
