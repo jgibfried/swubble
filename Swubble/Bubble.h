@@ -21,7 +21,10 @@
 @property (nonatomic, readonly) CGRect boundingBox;
 @property (nonatomic) CGPoint cellPosition;
 @property (nonatomic) int gridNumber;
+@property (nonatomic, strong) NSMutableArray *actionList;
 
 + (Bubble *) initWithData: (NSDictionary *) data;
+- (void) addAction: (CCFiniteTimeAction *) action;
+- (void) clearActionList;
 
 @end

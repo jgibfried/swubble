@@ -17,8 +17,10 @@
 @synthesize cellPosition;
 @synthesize touchDelegate;
 @synthesize gridNumber;
+@synthesize actionList;
 
 BOOL dragged = NO;
+BOOL sequenceIsRunning = NO;
 CGPoint startLocation;
 
 -(id) initWithData: (NSDictionary *) data
@@ -29,6 +31,7 @@ CGPoint startLocation;
 	if(self) {
         self.type = _type;
         self.bubbleId = [self newUUID];
+        self.actionList = [NSMutableArray array];
     }
 	return self;
 }
@@ -36,6 +39,24 @@ CGPoint startLocation;
 + (Bubble *) initWithData: (NSDictionary *) data
 {
     return [[Bubble alloc] initWithData:data];
+}
+
+- (void) runActionSequence
+{
+    [self runAction:[CCSequence actions:
+                     [CCSequence actionWithArray:self.actionList],
+                     nil]];
+}
+
+- (void) addAction: (CCFiniteTimeAction *) action
+{
+    [self.actionList addObject:action];
+    [self runActionSequence];
+}
+
+- (void) clearActionList
+{
+    [self.actionList removeAllObjects];
 }
 
 - (CGRect)boundingBoxInPixels

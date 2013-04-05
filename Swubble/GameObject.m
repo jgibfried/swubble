@@ -238,7 +238,7 @@
                     }
 
                     if (cell.gridNumber == bubble.gridNumber && (cell.bubblePosition.x != bubble.position.x || cell.bubblePosition.y != bubble.position.y) && bubble != nil) {
-                        [bubble runAction:[CCMoveTo actionWithDuration:0.2 position:ccp(cell.bubblePosition.x, cell.bubblePosition.y)]];
+                        [bubble addAction: [CCMoveTo actionWithDuration:0.2 position:ccp(cell.bubblePosition.x, cell.bubblePosition.y)]];
                         [cell setBubble: bubble];
                     }
                 }];
@@ -306,9 +306,11 @@
             for (GameGridCell *cell in self.matchesToDestroy) {
                 if (cell.bubble) {
                     Bubble *bubble = cell.bubble;
-                    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:bubble ];
-                    [self.gameGridLayer removeChild:bubble cleanup:YES];
                     cell.bubble = nil;
+                
+                    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:bubble ];
+                    [bubble clearActionList];
+                    [self.gameGridLayer removeChild:bubble cleanup:YES];
                 }
             }
             [self.matchesToDestroy removeAllObjects];
@@ -371,7 +373,6 @@
     if (!bubble2) {
         return;
     }
-    [[CCDirector sharedDirector] touchDispatcher].dispatchEvents = NO;
     [self animateSwap:cell1 withCell:cell2 withHandler:^(void){
         
         [cell2 setBubble: bubble1];
@@ -391,11 +392,9 @@
             [self animateSwap:cell1 withCell:cell2 withHandler:^(void){
                 [cell1 setBubble: bubble1];
                 [cell2 setBubble: bubble2];
-                [[CCDirector sharedDirector] touchDispatcher].dispatchEvents = YES;
             }];
         } else {
             [self destroyAllMatches];
-            [[CCDirector sharedDirector] touchDispatcher].dispatchEvents = YES;
         }
     }];
 }
@@ -404,15 +403,10 @@
 {
     CGPoint cell1BubblePosition = cell1.bubblePosition;
     CGPoint cell2BubblePosition = cell2.bubblePosition;
-    [cell1.bubble runAction:
-     [CCSequence actions:
-      [CCCallBlock actionWithBlock:^(void){
-         [cell1.bubble runAction:[CCMoveTo actionWithDuration:0.25 position:ccp(cell2BubblePosition.x, cell2BubblePosition.y)]];
-         [cell2.bubble runAction:[CCMoveTo actionWithDuration:0.25 position:ccp(cell1BubblePosition.x, cell1BubblePosition.y)]];
-        }],
-      [CCDelayTime actionWithDuration:0.5],
-      [CCCallBlock actionWithBlock:handler],
-      nil]];
+    [cell1.bubble addAction:[CCMoveTo actionWithDuration:0.25 position:ccp(cell2BubblePosition.x, cell2BubblePosition.y)]];
+    [cell2.bubble addAction:[CCMoveTo actionWithDuration:0.25 position:ccp(cell1BubblePosition.x, cell1BubblePosition.y)]];
+    
+    [cell1.bubble runAction:[CCCallBlock actionWithBlock:handler]];
 }
 
 - (void) setValidMatches: (GameGridCell *) cell
