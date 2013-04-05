@@ -27,7 +27,7 @@
 #define gameGridOffsetY    80 // points
 #define gameGridOffsetX    96 // points
 
-#define gameBubbleDragDistance  60 // points
+#define gameBubbleDragDistance  30 // points
 
 #define difficultyLevels   5
 

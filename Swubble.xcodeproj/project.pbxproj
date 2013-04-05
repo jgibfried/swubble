@@ -163,7 +163,6 @@
 		3AE0B19716EE909500636BC6 /* GameGridLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE0B19616EE909500636BC6 /* GameGridLayer.m */; };
 		3AE0B19B16EE92FE00636BC6 /* greenBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AE0B19916EE92FE00636BC6 /* greenBubble.png */; };
 		3AE0B19C16EE92FE00636BC6 /* redBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AE0B19A16EE92FE00636BC6 /* redBubble.png */; };
-		3AE0B1A316EFE4FD00636BC6 /* GameEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE0B1A216EFE4FD00636BC6 /* GameEngine.m */; };
 		3AE0B1A616EFE68F00636BC6 /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE0B1A516EFE68F00636BC6 /* GameObject.m */; };
 		3AE0B1AA16F28C5900636BC6 /* Bubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE0B1A916F28C5800636BC6 /* Bubble.m */; };
 /* End PBXBuildFile section */
@@ -483,8 +482,6 @@
 		3AE0B19616EE909500636BC6 /* GameGridLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameGridLayer.m; sourceTree = "<group>"; };
 		3AE0B19916EE92FE00636BC6 /* greenBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenBubble.png; sourceTree = "<group>"; };
 		3AE0B19A16EE92FE00636BC6 /* redBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redBubble.png; sourceTree = "<group>"; };
-		3AE0B1A116EFE4FC00636BC6 /* GameEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEngine.h; sourceTree = "<group>"; };
-		3AE0B1A216EFE4FD00636BC6 /* GameEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameEngine.m; sourceTree = "<group>"; };
 		3AE0B1A416EFE68F00636BC6 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
 		3AE0B1A516EFE68F00636BC6 /* GameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObject.m; sourceTree = "<group>"; };
 		3AE0B1A816F28C5800636BC6 /* Bubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bubble.h; sourceTree = "<group>"; };
@@ -559,8 +556,6 @@
 				3AA18F2616E8E675009A3AC3 /* Scenes */,
 				3AA18F3B16E92491009A3AC3 /* DeviceSettings.h */,
 				3AA18F3C16E924B2009A3AC3 /* Constants.h */,
-				3AE0B1A116EFE4FC00636BC6 /* GameEngine.h */,
-				3AE0B1A216EFE4FD00636BC6 /* GameEngine.m */,
 				3AE0B1A416EFE68F00636BC6 /* GameObject.h */,
 				3AE0B1A516EFE68F00636BC6 /* GameObject.m */,
 				3AE0B1A816F28C5800636BC6 /* Bubble.h */,
@@ -1236,7 +1231,6 @@
 				3AA18F2F16E8E702009A3AC3 /* MenuBackgroundLayer.m in Sources */,
 				3AA18F3516E8F4B2009A3AC3 /* BaseLayer.m in Sources */,
 				3AE0B19716EE909500636BC6 /* GameGridLayer.m in Sources */,
-				3AE0B1A316EFE4FD00636BC6 /* GameEngine.m in Sources */,
 				3AE0B1A616EFE68F00636BC6 /* GameObject.m in Sources */,
 				3AE0B1AA16F28C5900636BC6 /* Bubble.m in Sources */,
 				3A02003316F4A9E200F6363C /* GameGrid.m in Sources */,

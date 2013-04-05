@@ -18,8 +18,6 @@
 @synthesize touchDelegate;
 @synthesize gridNumber;
 
-@synthesize moving;
-
 BOOL dragged = NO;
 CGPoint startLocation;
 
@@ -27,8 +25,8 @@ CGPoint startLocation;
 {
     NSString *_file = [data objectForKey:@"file"];
     NSString *_type = [data objectForKey:@"type"];
-    
-	if((self=[super initWithFile: _file])) {
+    self = [super initWithFile: _file];
+	if(self) {
         self.type = _type;
         self.bubbleId = [self newUUID];
     }
@@ -42,16 +40,9 @@ CGPoint startLocation;
 
 - (CGRect)boundingBoxInPixels
 {
-    CGSize s = [self.texture contentSizeInPixels];
-    return CGRectMake(-s.width / 2, -s.height / 2, s.width, s.height);
-}
-
-- (CGRect)boundingBox
-{
     CGSize s = [self.texture contentSize];
     return CGRectMake(-s.width / 2, -s.height / 2, s.width, s.height);
 }
-
 
 - (BOOL)containsTouchLocation:(UITouch *)touch
 {
@@ -74,8 +65,7 @@ CGPoint startLocation;
 -(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
     if ( ![self containsTouchLocation:touch] ) return NO;
-    if (self.moving) return NO;
-   
+    
     dragged = NO;
     startLocation = [[CCDirector sharedDirector] convertToGL:[touch locationInView:[touch view]]];
     return YES;
@@ -90,10 +80,7 @@ CGPoint startLocation;
     dragged = NO;
 }
 
--(void) ccTouchCancelled:(UITouch *)touch withEvent:(UIEvent *)event
-{
-    
-}
+-(void) ccTouchCancelled:(UITouch *)touch withEvent:(UIEvent *)event {}
 
 -(void) ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {

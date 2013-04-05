@@ -16,6 +16,7 @@
 @property (nonatomic, strong) CCLayer *gameGridLayer;
 
 @property (nonatomic, strong) NSArray *bubbleTypes;
+@property (nonatomic, strong) NSMutableSet *matchesToDestroy;
 
 @property (nonatomic) int totalBonuses;
 @property (nonatomic) int totalScore;

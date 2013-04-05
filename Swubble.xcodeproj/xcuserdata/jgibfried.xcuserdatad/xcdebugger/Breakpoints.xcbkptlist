@@ -86,11 +86,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Swubble/GameObject.m"
-         timestampString = "386288173.604548"
+         timestampString = "386808472.12159"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "149"
-         endingLineNumber = "149"
+         startingLineNumber = "138"
+         endingLineNumber = "138"
          landmarkName = "-drawGridsAtOrigin:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -99,11 +99,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Swubble/GameGridLayer.m"
-         timestampString = "386107112.153237"
+         timestampString = "386461637.697134"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "27"
-         endingLineNumber = "27"
+         startingLineNumber = "29"
+         endingLineNumber = "29"
          landmarkName = "-setupGameGrid"
          landmarkType = "5">
       </FileBreakpoint>
@@ -112,11 +112,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Swubble/GameObject.m"
-         timestampString = "386288173.604548"
+         timestampString = "386808472.12159"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "162"
-         endingLineNumber = "162"
+         startingLineNumber = "151"
+         endingLineNumber = "151"
          landmarkName = "-drawGridsAtOrigin:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -125,11 +125,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Swubble/GameObject.m"
-         timestampString = "386288173.604548"
+         timestampString = "386808472.12159"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "165"
-         endingLineNumber = "165"
+         startingLineNumber = "154"
+         endingLineNumber = "154"
          landmarkName = "-drawGridsAtOrigin:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -138,11 +138,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Swubble/GameObject.m"
-         timestampString = "386288173.604548"
+         timestampString = "386808472.12159"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "163"
-         endingLineNumber = "163"
+         startingLineNumber = "152"
+         endingLineNumber = "152"
          landmarkName = "-drawGridsAtOrigin:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -151,11 +151,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Swubble/Bubble.m"
-         timestampString = "386287276.860547"
+         timestampString = "386807566.569536"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "131"
-         endingLineNumber = "131"
+         startingLineNumber = "118"
+         endingLineNumber = "118"
          landmarkName = "-determineDirection:andEnd:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -164,11 +164,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Swubble/Bubble.m"
-         timestampString = "386287276.860547"
+         timestampString = "386807566.569536"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "87"
-         endingLineNumber = "87"
+         startingLineNumber = "77"
+         endingLineNumber = "77"
          landmarkName = "-ccTouchEnded:withEvent:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -177,11 +177,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Swubble/Bubble.m"
-         timestampString = "386287276.860547"
+         timestampString = "386807566.569536"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "141"
-         endingLineNumber = "141"
+         startingLineNumber = "128"
+         endingLineNumber = "128"
          landmarkName = "-determineDirection:andEnd:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -190,115 +190,63 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Swubble/GameObject.m"
-         timestampString = "386288173.604548"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "365"
-         endingLineNumber = "365"
-         landmarkName = "-moveBubbleFromPosition:withGrid:toPosition:withGrid:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Swubble/GameObject.m"
-         timestampString = "386288173.604548"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "216"
-         endingLineNumber = "216"
-         landmarkName = "-getNextEmptyCell"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Swubble/GameObject.m"
-         timestampString = "386288173.604548"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "369"
-         endingLineNumber = "369"
-         landmarkName = "-moveBubbleFromPosition:withGrid:toPosition:withGrid:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Swubble/GameObject.m"
-         timestampString = "386288173.604548"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "373"
-         endingLineNumber = "373"
-         landmarkName = "-moveBubbleFromPosition:withGrid:toPosition:withGrid:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Swubble/GameObject.m"
-         timestampString = "386288173.604548"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "378"
-         endingLineNumber = "378"
-         landmarkName = "-moveBubbleFromPosition:withGrid:toPosition:withGrid:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Swubble/GameObject.m"
-         timestampString = "386288173.604548"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "215"
-         endingLineNumber = "215"
-         landmarkName = "-getNextEmptyCell"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Swubble/GameObject.m"
-         timestampString = "386288173.604548"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "251"
-         endingLineNumber = "251"
-         landmarkName = "-fillEmptyCells"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Swubble/GameObject.m"
-         timestampString = "386288173.604548"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "248"
-         endingLineNumber = "248"
-         landmarkName = "-fillEmptyCells"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Swubble/GameObject.m"
-         timestampString = "386288173.604548"
+         timestampString = "386808472.12159"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "358"
          endingLineNumber = "358"
+         landmarkName = "-moveBubbleFromPosition:withGrid:toPosition:withGrid:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Swubble/GameObject.m"
+         timestampString = "386808472.12159"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "362"
+         endingLineNumber = "362"
+         landmarkName = "-moveBubbleFromPosition:withGrid:toPosition:withGrid:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Swubble/GameObject.m"
+         timestampString = "386808472.12159"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "366"
+         endingLineNumber = "366"
+         landmarkName = "-moveBubbleFromPosition:withGrid:toPosition:withGrid:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Swubble/GameObject.m"
+         timestampString = "386808472.12159"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "371"
+         endingLineNumber = "371"
+         landmarkName = "-moveBubbleFromPosition:withGrid:toPosition:withGrid:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Swubble/GameObject.m"
+         timestampString = "386808472.12159"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "351"
+         endingLineNumber = "351"
          landmarkName = "-bubbleSwap:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -307,11 +255,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Swubble/GameObject.m"
-         timestampString = "386288173.604548"
+         timestampString = "386808472.12159"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "337"
-         endingLineNumber = "337"
+         startingLineNumber = "330"
+         endingLineNumber = "330"
          landmarkName = "-bubbleSwitchGrid:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -320,11 +268,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Swubble/GameObject.m"
-         timestampString = "386288173.604548"
+         timestampString = "386809352.462931"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "395"
-         endingLineNumber = "395"
+         startingLineNumber = "390"
+         endingLineNumber = "390"
          landmarkName = "-moveBubbleFromPosition:withGrid:toPosition:withGrid:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -332,66 +280,22 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Swubble/GameObject.m"
-         timestampString = "386288173.604548"
+         filePath = "Swubble/OperationManager.h"
+         timestampString = "386807147.27674"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "396"
-         endingLineNumber = "396"
-         landmarkName = "-moveBubbleFromPosition:withGrid:toPosition:withGrid:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Swubble/GameObject.m"
-         timestampString = "386288173.604548"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "322"
-         endingLineNumber = "322"
-         landmarkName = "-destroyMatches:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Swubble/GameObject.m"
-         timestampString = "386288173.604548"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "381"
-         endingLineNumber = "381"
-         landmarkName = "-moveBubbleFromPosition:withGrid:toPosition:withGrid:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Swubble/GameObject.m"
-         timestampString = "386288173.604548"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "402"
-         endingLineNumber = "402"
-         landmarkName = "-moveBubbleFromPosition:withGrid:toPosition:withGrid:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Swubble/GameObject.m"
-         timestampString = "386288173.604548"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "318"
-         endingLineNumber = "318"
-         landmarkName = "-destroyMatches:"
-         landmarkType = "5">
+         startingLineNumber = "15"
+         endingLineNumber = "15"
+         landmarkName = "activeOperations"
+         landmarkType = "19">
       </FileBreakpoint>
    </FileBreakpoints>
+   <SymbolicBreakpoints>
+      <AddressBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         symbolName = "*0x130d5862">
+      </AddressBreakpoint>
+   </SymbolicBreakpoints>
 </Bucket>

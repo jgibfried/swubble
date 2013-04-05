@@ -12,6 +12,7 @@
 
 @synthesize gameGridLayer;
 
+@synthesize matchesToDestroy;
 @synthesize gameTimeLeft;
 @synthesize gameTimeSpent;
 @synthesize totalScore;
@@ -25,6 +26,7 @@
     if( (self=[super init]) ) {
         self.gameTimeLeft = gameTimeDefault;
         self.grids = [NSArray arrayWithObjects:[GameGrid initWithDimensions:CGPointMake(gameGridSizeWidth, gameGridSizeHeight)], [GameGrid initWithDimensions:CGPointMake(gameGridSizeWidth, gameGridSizeHeight)], nil];
+        self.matchesToDestroy = [NSMutableSet set];
     }
 	return self;
 }
@@ -61,7 +63,7 @@
     NSDictionary *type2 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"2", greenBubbleSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
     NSDictionary *type3 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"3", yellowBubbleSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
     
-    return [[NSArray alloc] initWithObjects:type1, type2, type3, nil];
+    return [NSArray arrayWithObjects: type1, type2, type3, nil];
 }
 
 - (Bubble *) getNewBubble
@@ -131,19 +133,6 @@
     }];
 }
 
-- (void)fixBubbles
-{
-    [self.grids enumerateObjectsUsingBlock:^(GameGrid *grid, NSUInteger idx, BOOL *stop) {
-        NSLog(@"Grid %d", idx);
-        [grid.grid enumerateObjectsUsingBlock:^(NSMutableArray *column, NSUInteger idx, BOOL *stop) {
-            [column enumerateObjectsUsingBlock:^(GameGridCell *cell, NSUInteger idx, BOOL *stop) {
-                
-            }];
-        }];
-    }];
-}
-
-
 - (void)drawGridsAtOrigin: (CGPoint) origin
 {
     [self populateGrids];
@@ -166,6 +155,12 @@
         }
         xPosition = (xPosition + gameGridCellWidth);
     }
+    
+    [NSTimer scheduledTimerWithTimeInterval:3
+                                     target:self
+                                   selector:@selector(destroyOnTimer:)
+                                   userInfo:nil
+                                    repeats:YES];
 }
 
 - (int) oppositeGridNumber: (int) idx
@@ -201,20 +196,6 @@
 }
 
 /* Cell Population Methods ******************************/
-
-- (GameGridCell *) getNextEmptyCell
-{
-    for (GameGrid *grid in self.grids) {
-        for (NSArray *row in grid.grid) {
-            for (GameGridCell *cell in row) {
-                if (!cell.bubble) {
-                    return cell;
-                }
-            }
-        }
-    }
-    return nil;
-}
 
 - (GameGridCell *) getNextPopulatedCell: (CGPoint) cellPosition inDirection: (DragDirection) direction onGrid: (int) gridNumber
 {
@@ -257,18 +238,7 @@
                     }
 
                     if (cell.gridNumber == bubble.gridNumber && (cell.bubblePosition.x != bubble.position.x || cell.bubblePosition.y != bubble.position.y) && bubble != nil) {
-                        [bubble runAction:
-                         [CCSequence actions:
-                          [CCCallBlock actionWithBlock:^(void){
-                             bubble.moving = YES;
-                             [bubble runAction:[CCMoveTo actionWithDuration:0.3 position:ccp(cell.bubblePosition.x, cell.bubblePosition.y)]];
-                         }],
-                          [CCDelayTime actionWithDuration:0.4],
-                          [CCCallBlock actionWithBlock:^(void){
-                             bubble.moving = NO;
-                         }],
-                          nil]];
-
+                        [bubble runAction:[CCMoveTo actionWithDuration:0.2 position:ccp(cell.bubblePosition.x, cell.bubblePosition.y)]];
                         [cell setBubble: bubble];
                     }
                 }];
@@ -281,22 +251,15 @@
 
 - (NSArray *) getMatches: (GameGridCell *)cell
 {
-    NSMutableArray *matches = [[NSMutableArray alloc] init];
+    NSMutableArray *verticleMatches = [NSMutableArray arrayWithObject:cell];
+    [self checkForMatch:cell inDirection:kDirectionUp withArray:verticleMatches];
+    [self checkForMatch:cell inDirection:kDirectionDown withArray:verticleMatches];
     
-    NSMutableArray *verticleMatches = [[NSMutableArray alloc] init];
-    [verticleMatches addObject:cell];
-    [verticleMatches arrayByAddingObjectsFromArray:[self checkForMatch:cell inDirection:kDirectionUp withArray:verticleMatches]];
-    [verticleMatches arrayByAddingObjectsFromArray:[self checkForMatch:cell inDirection:kDirectionDown withArray:verticleMatches]];
+    NSMutableArray *horizontalMatches = [NSMutableArray arrayWithObject:cell];
+    [self checkForMatch:cell inDirection:kDirectionLeft withArray:horizontalMatches];
+    [self checkForMatch:cell inDirection:kDirectionRight withArray:horizontalMatches];
     
-    NSMutableArray *horizontalMatches = [[NSMutableArray alloc] init];
-    [horizontalMatches addObject:cell];
-    [horizontalMatches arrayByAddingObjectsFromArray:[self checkForMatch:cell inDirection:kDirectionLeft withArray:horizontalMatches]];
-    [horizontalMatches arrayByAddingObjectsFromArray:[self checkForMatch:cell inDirection:kDirectionRight withArray:horizontalMatches]];
-    
-    [matches addObject:verticleMatches];
-    [matches addObject:horizontalMatches];
-    
-    return matches;
+    return [NSArray arrayWithObjects:verticleMatches, horizontalMatches, nil];
 }
 
 -(NSArray *) checkForMatch:  (GameGridCell *)cell inDirection: (DragDirection) direction withArray: (NSMutableArray *) matches
@@ -313,16 +276,46 @@
     return matches;
 }
 
-- (void) destroyMatches: (NSArray *) matches
+- (void) destroyOnTimer: (NSTimer *)timer
 {
-    for (GameGridCell *cell in matches) {
-        if (cell.bubble) {
-            Bubble *bubble = cell.bubble;
-            [bubble.parent removeChild:bubble cleanup:YES];
-            cell.bubble = nil;
+    [self destroyAllMatches];
+}
+
+- (void)destroyAllMatches
+{
+    @synchronized(self)
+    {
+        [self.grids enumerateObjectsUsingBlock:^(GameGrid *grid, NSUInteger idx, BOOL *stop) {
+            [grid.grid enumerateObjectsUsingBlock:^(NSMutableArray *column, NSUInteger idx, BOOL *stop) {
+                [column enumerateObjectsUsingBlock:^(GameGridCell *cell, NSUInteger idx, BOOL *stop) {
+                    NSArray *matches1 = [self getMatches:cell];
+                    
+                    NSArray *vMatches1 = [matches1 objectAtIndex:0];
+                    NSArray *hMatches1 = [matches1 objectAtIndex:1];
+                    
+                    if ([vMatches1 count] >= 3) {
+                        [self.matchesToDestroy addObjectsFromArray:vMatches1];
+                    }
+                    if ([hMatches1 count] >= 3) {
+                        [self.matchesToDestroy addObjectsFromArray:hMatches1];
+                    }
+                }];
+            }];
+        }];
+        if (self.matchesToDestroy) {
+            for (GameGridCell *cell in self.matchesToDestroy) {
+                if (cell.bubble) {
+                    Bubble *bubble = cell.bubble;
+                    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:bubble ];
+                    [self.gameGridLayer removeChild:bubble cleanup:YES];
+                    cell.bubble = nil;
+                }
+            }
+            [self.matchesToDestroy removeAllObjects];
+            [self fillEmptyCells];
         }
     }
-    [self fillEmptyCells];
+    return;
 }
 
 /* Bubble Movement ******************************/
@@ -378,6 +371,7 @@
     if (!bubble2) {
         return;
     }
+    [[CCDirector sharedDirector] touchDispatcher].dispatchEvents = NO;
     [self animateSwap:cell1 withCell:cell2 withHandler:^(void){
         
         [cell2 setBubble: bubble1];
@@ -397,22 +391,11 @@
             [self animateSwap:cell1 withCell:cell2 withHandler:^(void){
                 [cell1 setBubble: bubble1];
                 [cell2 setBubble: bubble2];
+                [[CCDirector sharedDirector] touchDispatcher].dispatchEvents = YES;
             }];
         } else {
-            NSMutableArray *matchesToDestroy = [[NSMutableArray alloc] init];
-            if ([vMatches1 count] >= 3) {
-                [matchesToDestroy addObjectsFromArray:vMatches1];
-            }
-            if ([vMatches2 count] >= 3) {
-                [matchesToDestroy addObjectsFromArray:vMatches2];
-            }
-            if ([hMatches1 count] >= 3) {
-                [matchesToDestroy addObjectsFromArray:hMatches1];
-            }
-            if ([hMatches2 count] >= 3) {
-                [matchesToDestroy addObjectsFromArray:hMatches2];
-            }
-            [self destroyMatches:matchesToDestroy];
+            [self destroyAllMatches];
+            [[CCDirector sharedDirector] touchDispatcher].dispatchEvents = YES;
         }
     }];
 }
@@ -421,8 +404,6 @@
 {
     CGPoint cell1BubblePosition = cell1.bubblePosition;
     CGPoint cell2BubblePosition = cell2.bubblePosition;
-    [[CCDirector sharedDirector] touchDispatcher].dispatchEvents = NO;
-    
     [cell1.bubble runAction:
      [CCSequence actions:
       [CCCallBlock actionWithBlock:^(void){
@@ -430,13 +411,23 @@
          [cell2.bubble runAction:[CCMoveTo actionWithDuration:0.25 position:ccp(cell1BubblePosition.x, cell1BubblePosition.y)]];
         }],
       [CCDelayTime actionWithDuration:0.5],
-      [CCCallBlock actionWithBlock:^(void){
-         cell1.bubble.moving = NO;
-         cell2.bubble.moving = NO;
-         [[CCDirector sharedDirector] touchDispatcher].dispatchEvents = YES;
-     }],
       [CCCallBlock actionWithBlock:handler],
       nil]];
+}
+
+- (void) setValidMatches: (GameGridCell *) cell
+{
+    NSArray *matches1 = [self getMatches:cell];
+    
+    NSArray *vMatches1 = [matches1 objectAtIndex:0];
+    NSArray *hMatches1 = [matches1 objectAtIndex:1];
+
+    if ([vMatches1 count] >= 3) {
+        [self.matchesToDestroy addObjectsFromArray:vMatches1];
+    }
+    if ([hMatches1 count] >= 3) {
+        [self.matchesToDestroy addObjectsFromArray:hMatches1];
+    }
 }
 
 @end
