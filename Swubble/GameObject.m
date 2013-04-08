@@ -191,7 +191,8 @@ int maxCount = 0;
 
 /* Match Checking ******************************/
 
-- (BOOL) check{
+- (BOOL) check
+{
 	[self checkForMatches];
 	
 	NSArray *objects = [[self.matchesToDestroy objectEnumerator] allObjects];
@@ -381,7 +382,7 @@ int maxCount = 0;
         [cell2 setBubble: bubble1];
         [cell1 setBubble: bubble2];
         
-        if (![self check]) {
+        if ([self check] == NO) {
             [self animateSwap:cell1 withCell:cell2 withHandler:^(void){
                 [cell1 setBubble: bubble1];
                 [cell2 setBubble: bubble2];
@@ -395,18 +396,15 @@ int maxCount = 0;
     CGPoint cell1BubblePosition = cell1.bubblePosition;
     CGPoint cell2BubblePosition = cell2.bubblePosition;
     
-    CCAction *actionA = [CCSequence actions:
-						 [CCMoveTo actionWithDuration:0.25 position:ccp(cell2BubblePosition.x, cell2BubblePosition.y)],
-						 [CCCallBlock actionWithBlock:handler],
-						 nil];
-	
-	CCAction *actionB = [CCSequence actions:
-						 [CCMoveTo actionWithDuration:0.25 position:ccp(cell1BubblePosition.x, cell1BubblePosition.y)],
-						 [CCCallBlock actionWithBlock:handler],
-						 nil];
-    
-    [cell1.bubble runAction:actionA];
-	[cell2.bubble runAction:actionB];
+    [self.gameGridLayer runAction:
+             [CCSequence actions:
+              [CCCallBlock actionWithBlock:^(void){
+                 [cell1.bubble runAction:[CCMoveTo actionWithDuration:0.25 position:ccp(cell2BubblePosition.x, cell2BubblePosition.y)]];
+                 [cell2.bubble runAction:[CCMoveTo actionWithDuration:0.25 position:ccp(cell1BubblePosition.x, cell1BubblePosition.y)]];
+             }],
+              [CCDelayTime actionWithDuration:0.5],
+              [CCCallBlock actionWithBlock:handler],
+              nil]];
 }
 
 - (void) setValidMatches: (GameGridCell *) cell
