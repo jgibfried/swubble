@@ -150,8 +150,6 @@
 		3A8B036E16E79A780082D2B6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8B036D16E79A780082D2B6 /* main.m */; };
 		3A8B037116E79A780082D2B6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8B037016E79A780082D2B6 /* AppDelegate.m */; };
 		3A8B037416E79A780082D2B6 /* MenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8B037316E79A780082D2B6 /* MenuLayer.m */; };
-		3A8B037716E79A780082D2B6 /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8B037616E79A780082D2B6 /* IntroLayer.m */; };
-		3A8B037F16E7A2AC0082D2B6 /* IntroScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8B037E16E7A2AC0082D2B6 /* IntroScene.m */; };
 		3A8B038216E7A3B80082D2B6 /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8B038116E7A3B80082D2B6 /* MenuScene.m */; };
 		3A8B038516E7A5350082D2B6 /* BaseScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8B038416E7A5350082D2B6 /* BaseScene.m */; };
 		3A8B038816E7AA6C0082D2B6 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8B038716E7AA6C0082D2B6 /* GameScene.m */; };
@@ -459,10 +457,6 @@
 		3A8B037016E79A780082D2B6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3A8B037216E79A780082D2B6 /* MenuLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuLayer.h; sourceTree = "<group>"; };
 		3A8B037316E79A780082D2B6 /* MenuLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuLayer.m; sourceTree = "<group>"; };
-		3A8B037516E79A780082D2B6 /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
-		3A8B037616E79A780082D2B6 /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
-		3A8B037D16E7A2AC0082D2B6 /* IntroScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroScene.h; sourceTree = "<group>"; };
-		3A8B037E16E7A2AC0082D2B6 /* IntroScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroScene.m; sourceTree = "<group>"; };
 		3A8B038016E7A3B80082D2B6 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
 		3A8B038116E7A3B80082D2B6 /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuScene.m; sourceTree = "<group>"; };
 		3A8B038316E7A5350082D2B6 /* BaseScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseScene.h; sourceTree = "<group>"; };
@@ -947,22 +941,10 @@
 		3AA18F2616E8E675009A3AC3 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				3AA18F2716E8E68B009A3AC3 /* Intro */,
 				3AA18F2816E8E6A5009A3AC3 /* Menu */,
 				3AA18F2916E8E6B3009A3AC3 /* Game */,
 			);
 			name = Scenes;
-			sourceTree = "<group>";
-		};
-		3AA18F2716E8E68B009A3AC3 /* Intro */ = {
-			isa = PBXGroup;
-			children = (
-				3A8B037516E79A780082D2B6 /* IntroLayer.h */,
-				3A8B037616E79A780082D2B6 /* IntroLayer.m */,
-				3A8B037D16E7A2AC0082D2B6 /* IntroScene.h */,
-				3A8B037E16E7A2AC0082D2B6 /* IntroScene.m */,
-			);
-			name = Intro;
 			sourceTree = "<group>";
 		};
 		3AA18F2816E8E6A5009A3AC3 /* Menu */ = {
@@ -1227,8 +1209,6 @@
 				3A8B036E16E79A780082D2B6 /* main.m in Sources */,
 				3A8B037116E79A780082D2B6 /* AppDelegate.m in Sources */,
 				3A8B037416E79A780082D2B6 /* MenuLayer.m in Sources */,
-				3A8B037716E79A780082D2B6 /* IntroLayer.m in Sources */,
-				3A8B037F16E7A2AC0082D2B6 /* IntroScene.m in Sources */,
 				3A8B038216E7A3B80082D2B6 /* MenuScene.m in Sources */,
 				3A8B038516E7A5350082D2B6 /* BaseScene.m in Sources */,
 				3A8B038816E7AA6C0082D2B6 /* GameScene.m in Sources */,

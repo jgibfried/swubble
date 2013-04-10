@@ -18,7 +18,11 @@
 
 #define gameTimeDefault 120
 
-#define gameGridSizeHeight 10
+#define bubbleDestroyTime  0.2
+#define bubbleSwapTime     0.2
+#define bubblePopulateTime 0.2
+
+#define gameGridSizeHeight 9
 #define gameGridSizeWidth  6
 
 #define gameGridCellHeight 60 // points
@@ -30,6 +34,8 @@
 #define gameBubbleDragDistance  30 // points
 
 #define difficultyLevels   5
+
+#define pointsPerBubble    30
 
 typedef enum dragDirection {
     kDirectionUp,

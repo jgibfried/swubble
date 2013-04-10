@@ -19,6 +19,8 @@
 @synthesize gridNumber;
 @synthesize actionList;
 
+@synthesize locked;
+
 BOOL dragged = NO;
 BOOL sequenceIsRunning = NO;
 CGPoint startLocation;

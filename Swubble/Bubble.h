@@ -22,6 +22,7 @@
 @property (nonatomic) CGPoint cellPosition;
 @property (nonatomic) int gridNumber;
 @property (nonatomic, strong) NSMutableArray *actionList;
+@property (nonatomic) BOOL locked;
 
 + (Bubble *) initWithData: (NSDictionary *) data;
 - (void) addAction: (CCFiniteTimeAction *) action;

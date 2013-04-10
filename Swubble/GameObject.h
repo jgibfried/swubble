@@ -12,6 +12,7 @@
 
 @interface GameObject : NSObject
 
+@property (nonatomic) CGSize windowSize;
 
 @property (nonatomic, strong) CCLayer *gameGridLayer;
 
@@ -19,7 +20,10 @@
 @property (nonatomic, strong) NSMutableSet *matchesToDestroy;
 
 @property (nonatomic) int totalBonuses;
-@property (nonatomic) int totalScore;
+@property (nonatomic, getter = getTotalScore) int totalScore;
+
+
+@property (nonatomic, strong) NSMutableDictionary *score;
 
 @property (nonatomic) int difficultyLevel;
 
@@ -33,5 +37,6 @@
 - (void)startGame;
 - (void)populateGrids;
 - (void)drawGridsAtOrigin: (CGPoint) origin;
+- (int) getScoreForType: (NSString *)type;
 
 @end
