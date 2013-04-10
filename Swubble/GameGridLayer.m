@@ -61,6 +61,7 @@
     
     self.game = game;
     [self.game drawGridsAtOrigin:CGPointMake(gameGridOffsetX, gameGridOffsetY)];
+    [self.game startGame];
 }
 
 

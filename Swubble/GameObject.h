@@ -15,6 +15,7 @@
 @property (nonatomic) CGSize windowSize;
 
 @property (nonatomic, strong) CCLayer *gameGridLayer;
+@property (nonatomic, strong) CCLabelTTF *gameTimeLabel;
 
 @property (nonatomic, strong) NSArray *bubbleTypes;
 @property (nonatomic, strong) NSMutableSet *matchesToDestroy;
