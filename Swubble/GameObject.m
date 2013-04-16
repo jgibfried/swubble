@@ -10,20 +10,6 @@
 
 @implementation GameObject
 
-@synthesize gameGridLayer;
-
-@synthesize matchesToDestroy;
-@synthesize gameTimeLeft;
-@synthesize gameTimeSpent;
-
-@synthesize score;
-
-@synthesize totalBonuses;
-
-@synthesize difficultyLevel;
-
-@synthesize gameTimer;
-
 int maxCount = 0;
 
 - (id)init
@@ -54,7 +40,7 @@ int maxCount = 0;
     self.gameTimeLabel.position = CGPointMake(self.windowSize.width-120, self.windowSize.height-50);
     [self.gameGridLayer addChild: self.gameTimeLabel];
     
-    gameTimer = [NSTimer scheduledTimerWithTimeInterval:1
+    self.gameTimer = [NSTimer scheduledTimerWithTimeInterval:1
                                                  target:self
                                                selector:@selector(second:)
                                                userInfo:nil
@@ -68,8 +54,14 @@ int maxCount = 0;
     
     [self.gameTimeLabel setString:[NSString stringWithFormat:@"Time Left: %d", self.gameTimeLeft]];
     
-    if (gameTimeLeft <= 0)
-        [gameTimer invalidate];
+    if (self.gameTimeLeft <= 0)
+        [self endGame];
+}
+
+- (void) endGame
+{
+    
+    [self.gameTimer invalidate];
 }
 
 - (void) incrementScore: (int) amount forType: (NSString *) type
