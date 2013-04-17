@@ -88,7 +88,7 @@ int maxCount = 0;
 
 - (NSArray *) bubbleTypes
 {
-    NSDictionary *type1 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"1", redBubbleSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
+    NSDictionary *type1 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"1", pigSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
     NSDictionary *type2 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"2", greenBubbleSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
     NSDictionary *type3 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"3", yellowBubbleSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
     
@@ -367,7 +367,11 @@ int maxCount = 0;
             }
             
             CCSequence *action = [CCSequence actions:
-                                  [CCMoveTo actionWithDuration:bubblePopulateTime position:ccp(cell.bubblePosition.x, cell.bubblePosition.y)], nil];
+                                  [CCCallBlock actionWithBlock:^(void){
+                                    [bubble runAction:[CCMoveTo actionWithDuration:bubblePopulateTime position:ccp(cell.bubblePosition.x, cell.bubblePosition.y)]];
+                                    [bubble runAction:[CCRotateBy actionWithDuration:bubblePopulateTime angle:[self randFloatBetween:0.1 and:360.0]]];
+                                  }]
+                                  , nil];
             
             [bubble runAction: action];
             [cell setBubble: bubble];
@@ -475,8 +479,13 @@ int maxCount = 0;
     [self.gameGridLayer runAction:
              [CCSequence actions:
               [CCCallBlock actionWithBlock:^(void){
+                 //[CCRotateTo durationTime:1.0 angle:180.0]]
+                 
                  [cell1.bubble runAction:[CCMoveTo actionWithDuration:bubbleSwapTime position:ccp(cell2BubblePosition.x, cell2BubblePosition.y)]];
+                 [cell1.bubble runAction:[CCRotateBy actionWithDuration:bubbleSwapTime angle:45.0]];
+                 
                  [cell2.bubble runAction:[CCMoveTo actionWithDuration:bubbleSwapTime position:ccp(cell1BubblePosition.x, cell1BubblePosition.y)]];
+                 [cell2.bubble runAction:[CCRotateBy actionWithDuration:bubbleSwapTime angle:45.0]];
              }],
               [CCDelayTime actionWithDuration:(bubbleSwapTime*2)],
               [CCCallBlock actionWithBlock:handler],
@@ -496,6 +505,12 @@ int maxCount = 0;
     if ([hMatches1 count] >= 3) {
         [self.matchesToDestroy addObjectsFromArray:hMatches1];
     }
+}
+
+-(float) randFloatBetween:(float)low and:(float)high
+{
+    float diff = high - low;
+    return (((float) rand() / RAND_MAX) * diff) + low;
 }
 
 @end

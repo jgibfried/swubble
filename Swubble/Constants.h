@@ -12,6 +12,9 @@
 #define menuBackground     @"menuBackgroundImage.png"
 #define gameBackground     @"menuBackgroundImage.png"
 
+
+#define pigSprite          @"pigSprite.png"
+
 #define redBubbleSprite    @"redBubble.png"
 #define greenBubbleSprite  @"greenBubble.png"
 #define yellowBubbleSprite @"yellowBubble.png"
