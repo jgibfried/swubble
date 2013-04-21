@@ -25,6 +25,8 @@
 		3A4FA27916E9577800B1C499 /* Default-landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A4FA27716E9577800B1C499 /* Default-landscape~ipad.png */; };
 		3A4FA27C16E957C500B1C499 /* Default-portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A4FA27A16E957C500B1C499 /* Default-portrait@2x~ipad.png */; };
 		3A4FA27D16E957C500B1C499 /* Default-portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A4FA27B16E957C500B1C499 /* Default-portrait~ipad.png */; };
+		3A6100CD1722DB2700109590 /* cowSprite.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A6100CB1722DB2700109590 /* cowSprite.png */; };
+		3A6100CE1722DB2700109590 /* cowSprite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A6100CC1722DB2700109590 /* cowSprite@2x.png */; };
 		3A8B01D016E79A760082D2B6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8B01CF16E79A760082D2B6 /* QuartzCore.framework */; };
 		3A8B01D216E79A760082D2B6 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8B01D116E79A760082D2B6 /* OpenGLES.framework */; };
 		3A8B01D416E79A760082D2B6 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8B01D316E79A760082D2B6 /* OpenAL.framework */; };
@@ -189,6 +191,8 @@
 		3A4FA27716E9577800B1C499 /* Default-landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-landscape~ipad.png"; path = "Resources/Default-landscape~ipad.png"; sourceTree = "<group>"; };
 		3A4FA27A16E957C500B1C499 /* Default-portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-portrait@2x~ipad.png"; path = "Resources/Default-portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		3A4FA27B16E957C500B1C499 /* Default-portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-portrait~ipad.png"; path = "Resources/Default-portrait~ipad.png"; sourceTree = "<group>"; };
+		3A6100CB1722DB2700109590 /* cowSprite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cowSprite.png; sourceTree = "<group>"; };
+		3A6100CC1722DB2700109590 /* cowSprite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cowSprite@2x.png"; sourceTree = "<group>"; };
 		3A8B01CC16E79A760082D2B6 /* Swubble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swubble.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A8B01CF16E79A760082D2B6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3A8B01D116E79A760082D2B6 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -980,6 +984,8 @@
 		3AE0B19816EE92FE00636BC6 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
+				3A6100CB1722DB2700109590 /* cowSprite.png */,
+				3A6100CC1722DB2700109590 /* cowSprite@2x.png */,
 				3A174B49171F46AC00F7E10A /* pigSprite.png */,
 				3A174B4A171F46AC00F7E10A /* pigSprite@2x.png */,
 				3AC1E38F17035B40008A8435 /* yellowBubble.png */,
@@ -1097,6 +1103,8 @@
 				3AC1E39217035B40008A8435 /* yellowBubble@2x.png in Resources */,
 				3A174B4B171F46AC00F7E10A /* pigSprite.png in Resources */,
 				3A174B4C171F46AC00F7E10A /* pigSprite@2x.png in Resources */,
+				3A6100CD1722DB2700109590 /* cowSprite.png in Resources */,
+				3A6100CE1722DB2700109590 /* cowSprite@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
