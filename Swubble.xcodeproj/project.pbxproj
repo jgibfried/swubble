@@ -157,6 +157,8 @@
 		3A8B038216E7A3B80082D2B6 /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8B038116E7A3B80082D2B6 /* MenuScene.m */; };
 		3A8B038516E7A5350082D2B6 /* BaseScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8B038416E7A5350082D2B6 /* BaseScene.m */; };
 		3A8B038816E7AA6C0082D2B6 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8B038716E7AA6C0082D2B6 /* GameScene.m */; };
+		3A90BEA4172C1280002DA1A5 /* chickenSprite.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A90BEA2172C1280002DA1A5 /* chickenSprite.png */; };
+		3A90BEA5172C1280002DA1A5 /* chickenSprite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A90BEA3172C1280002DA1A5 /* chickenSprite@2x.png */; };
 		3AA18F2C16E8E6EC009A3AC3 /* GameBackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA18F2B16E8E6EC009A3AC3 /* GameBackgroundLayer.m */; };
 		3AA18F2F16E8E702009A3AC3 /* MenuBackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA18F2E16E8E702009A3AC3 /* MenuBackgroundLayer.m */; };
 		3AA18F3516E8F4B2009A3AC3 /* BaseLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA18F3416E8F4B2009A3AC3 /* BaseLayer.m */; };
@@ -471,6 +473,8 @@
 		3A8B038416E7A5350082D2B6 /* BaseScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseScene.m; sourceTree = "<group>"; };
 		3A8B038616E7AA6C0082D2B6 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		3A8B038716E7AA6C0082D2B6 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		3A90BEA2172C1280002DA1A5 /* chickenSprite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chickenSprite.png; sourceTree = "<group>"; };
+		3A90BEA3172C1280002DA1A5 /* chickenSprite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chickenSprite@2x.png"; sourceTree = "<group>"; };
 		3AA18F2A16E8E6EC009A3AC3 /* GameBackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameBackgroundLayer.h; sourceTree = "<group>"; };
 		3AA18F2B16E8E6EC009A3AC3 /* GameBackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameBackgroundLayer.m; sourceTree = "<group>"; };
 		3AA18F2D16E8E702009A3AC3 /* MenuBackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuBackgroundLayer.h; sourceTree = "<group>"; };
@@ -984,6 +988,8 @@
 		3AE0B19816EE92FE00636BC6 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
+				3A90BEA2172C1280002DA1A5 /* chickenSprite.png */,
+				3A90BEA3172C1280002DA1A5 /* chickenSprite@2x.png */,
 				3A6100CB1722DB2700109590 /* cowSprite.png */,
 				3A6100CC1722DB2700109590 /* cowSprite@2x.png */,
 				3A174B49171F46AC00F7E10A /* pigSprite.png */,
@@ -1105,6 +1111,8 @@
 				3A174B4C171F46AC00F7E10A /* pigSprite@2x.png in Resources */,
 				3A6100CD1722DB2700109590 /* cowSprite.png in Resources */,
 				3A6100CE1722DB2700109590 /* cowSprite@2x.png in Resources */,
+				3A90BEA4172C1280002DA1A5 /* chickenSprite.png in Resources */,
+				3A90BEA5172C1280002DA1A5 /* chickenSprite@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
