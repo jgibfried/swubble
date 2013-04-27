@@ -159,6 +159,8 @@
 		3A8B038816E7AA6C0082D2B6 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8B038716E7AA6C0082D2B6 /* GameScene.m */; };
 		3A90BEA4172C1280002DA1A5 /* chickenSprite.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A90BEA2172C1280002DA1A5 /* chickenSprite.png */; };
 		3A90BEA5172C1280002DA1A5 /* chickenSprite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A90BEA3172C1280002DA1A5 /* chickenSprite@2x.png */; };
+		3A90BEA7172C1A69002DA1A5 /* penBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A90BEA6172C1A69002DA1A5 /* penBackground.png */; };
+		3A90BEA9172C24BB002DA1A5 /* penBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A90BEA8172C24BB002DA1A5 /* penBackground@2x.png */; };
 		3AA18F2C16E8E6EC009A3AC3 /* GameBackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA18F2B16E8E6EC009A3AC3 /* GameBackgroundLayer.m */; };
 		3AA18F2F16E8E702009A3AC3 /* MenuBackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA18F2E16E8E702009A3AC3 /* MenuBackgroundLayer.m */; };
 		3AA18F3516E8F4B2009A3AC3 /* BaseLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA18F3416E8F4B2009A3AC3 /* BaseLayer.m */; };
@@ -475,6 +477,8 @@
 		3A8B038716E7AA6C0082D2B6 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
 		3A90BEA2172C1280002DA1A5 /* chickenSprite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chickenSprite.png; sourceTree = "<group>"; };
 		3A90BEA3172C1280002DA1A5 /* chickenSprite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chickenSprite@2x.png"; sourceTree = "<group>"; };
+		3A90BEA6172C1A69002DA1A5 /* penBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = penBackground.png; path = Resources/penBackground.png; sourceTree = "<group>"; };
+		3A90BEA8172C24BB002DA1A5 /* penBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "penBackground@2x.png"; path = "Resources/penBackground@2x.png"; sourceTree = "<group>"; };
 		3AA18F2A16E8E6EC009A3AC3 /* GameBackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameBackgroundLayer.h; sourceTree = "<group>"; };
 		3AA18F2B16E8E6EC009A3AC3 /* GameBackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameBackgroundLayer.m; sourceTree = "<group>"; };
 		3AA18F2D16E8E702009A3AC3 /* MenuBackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuBackgroundLayer.h; sourceTree = "<group>"; };
@@ -1008,6 +1012,8 @@
 		3AE0B19D16EE930600636BC6 /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				3A90BEA8172C24BB002DA1A5 /* penBackground@2x.png */,
+				3A90BEA6172C1A69002DA1A5 /* penBackground.png */,
 				3A4FA27A16E957C500B1C499 /* Default-portrait@2x~ipad.png */,
 				3A4FA27B16E957C500B1C499 /* Default-portrait~ipad.png */,
 				3A4FA27616E9577800B1C499 /* Default-landscape@2x~ipad.png */,
@@ -1113,6 +1119,8 @@
 				3A6100CE1722DB2700109590 /* cowSprite@2x.png in Resources */,
 				3A90BEA4172C1280002DA1A5 /* chickenSprite.png in Resources */,
 				3A90BEA5172C1280002DA1A5 /* chickenSprite@2x.png in Resources */,
+				3A90BEA7172C1A69002DA1A5 /* penBackground.png in Resources */,
+				3A90BEA9172C24BB002DA1A5 /* penBackground@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,7 @@
 #define introBackground    @"menuBackgroundImage.png"
 #define menuBackground     @"menuBackgroundImage.png"
 #define gameBackground     @"menuBackgroundImage.png"
+#define penBackground      @"penBackground.png"
 
 
 #define pigSprite          @"pigSprite.png"
