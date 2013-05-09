@@ -21,7 +21,7 @@
 #define redBubbleSprite    @"redBubble.png"
 #define greenBubbleSprite  @"greenBubble.png"
 
-#define gameTimeDefault 120
+#define gameTimeDefault    360
 
 #define bubbleDestroyTime  0.2
 #define bubbleSwapTime     0.2

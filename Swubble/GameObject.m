@@ -160,7 +160,7 @@ int maxCount = 0;
             {
                 cell.bubblePosition = ccp(xPosition, yPosition);
                 cell.bubble.position = ccp(xPosition, yPosition);
-                [self.gameGridLayer addChild: cell.bubble];
+                [self.gameGridLayer addChild: cell.bubble z: 3];
                 yPosition = (yPosition + gameGridCellHeight);
             }
             yPosition = origin.y;
@@ -255,37 +255,63 @@ int maxCount = 0;
 	
     int points = [self getPoints];
     
+    NSMutableArray *actionArray = [NSMutableArray array];
+    
     for (GameGridCell *cell in self.matchesToDestroy) {
+//        NSMutableArray *column = [((NSMutableArray *)([(GameGrid *)[self.grids objectAtIndex:cell.gridNumber]]).grid) objectAtIndex:cell.position.x];
+//        
+//        [column enumerateObjectsUsingBlock:^(GameGridCell *cell, NSUInteger idx, BOOL *stop) {
+//            cell.bubble.locked = YES;
+//        }];
+//        
         if (cell.bubble) {
             Bubble *bubble = cell.bubble;
             cell.bubble = nil;
             
             [self incrementScore:points forType:bubble.type];
             
-            CCAction *action = [CCSequence actions:[CCScaleTo actionWithDuration:bubbleDestroyTime scale:0.0],
-                                [CCCallFuncN actionWithTarget: self selector:@selector(removeBubble:)],
-                                nil];
-            [bubble runAction: action];
+            [actionArray addObject:[CCCallBlock actionWithBlock:^(void){
+                                        [bubble runAction:[CCScaleTo actionWithDuration:bubbleDestroyTime scale:0.0]];
+                                        [bubble runAction:[CCCallFuncN actionWithTarget: self selector:@selector(removeBubble:)]];
+                                    }]];
+            
         }
     }
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"ScoreUpdated" object:self]];
 	[self.matchesToDestroy removeAllObjects];
-	
-	[self.gameGridLayer runAction: [CCSequence actions:
-                                    [CCDelayTime actionWithDuration: 0.33],
-                                    [CCCallFunc actionWithTarget:self selector:@selector(fillEmptyCells)],
-                                    [CCDelayTime actionWithDuration: bubblePopulateTime * maxCount],
-                                    [CCCallFunc actionWithTarget:self selector:@selector(afterAllMoveDone)],
-                                    nil]];
+    
+    [actionArray addObject:[CCDelayTime actionWithDuration: 0.33]];
+    [actionArray addObject:[CCCallFunc actionWithTarget:self selector:@selector(fillEmptyCells)]];
+    [actionArray addObject:[CCDelayTime actionWithDuration: bubblePopulateTime]];
+    [actionArray addObject:[CCCallFunc actionWithTarget:self selector:@selector(afterAllMoveDone)]];
+    
+    CCFiniteTimeAction *actionSeq = [self getActionSequence:actionArray];
+    
+    [self.gameGridLayer runAction: actionSeq];
+    
+    [actionArray removeAllObjects];
+    [self unlockAllBubbles];
 	return YES;
 }
 
-- (void) removeBubble: (id) sender{
-	[self.gameGridLayer removeChild: sender cleanup:YES];
+- (void) removeBubble: (id) sender
+{
+    [self.gameGridLayer removeChild: sender cleanup:YES];
 }
 
 - (void) afterAllMoveDone{
     [self check];
+}
+
+- (void) unlockAllBubbles
+{
+    [self.grids enumerateObjectsUsingBlock:^(GameGrid *grid, NSUInteger idx, BOOL *stop) {
+        [grid.grid enumerateObjectsUsingBlock:^(NSMutableArray *column, NSUInteger idx, BOOL *stop) {
+            [column enumerateObjectsUsingBlock:^(GameGridCell *cell, NSUInteger idx, BOOL *stop) {
+                cell.bubble.locked = NO;
+            }];
+        }];
+    }];
 }
 
 - (void) checkForMatches
@@ -301,12 +327,16 @@ int maxCount = 0;
                 if ([vMatches1 count] >= 3) {
                     for (GameGridCell *cell in vMatches1) {
                         cell.bubble.locked = YES;
+                        GameGridCell *otherCell = [self cellOnGrid:[self oppositeGridNumber:cell.bubble.gridNumber] atPosition:cell.position];
+                        otherCell.bubble.locked = YES;
                     }
                     [self.matchesToDestroy addObjectsFromArray:vMatches1];
                 }
                 if ([hMatches1 count] >= 3) {
                     for (GameGridCell *cell in hMatches1) {
                         cell.bubble.locked = YES;
+                        GameGridCell *otherCell = [self cellOnGrid:[self oppositeGridNumber:cell.bubble.gridNumber] atPosition:cell.position];
+                        otherCell.bubble.locked = YES;
                     }
                     [self.matchesToDestroy addObjectsFromArray:hMatches1];
                 }
@@ -360,6 +390,9 @@ int maxCount = 0;
 {
 	__block int extension = 0;
     [column enumerateObjectsUsingBlock:^(GameGridCell *cell, NSUInteger idx, BOOL *stop) {
+        cell.bubble.locked = YES;
+    }];
+    [column enumerateObjectsUsingBlock:^(GameGridCell *cell, NSUInteger idx, BOOL *stop) {
         if (cell.bubble == nil) {
            	extension++;
             Bubble *bubble = nil;
@@ -372,17 +405,23 @@ int maxCount = 0;
                 [cellToCheck setBubble:nil];
             }
             
-            CCSequence *action = [CCSequence actions:
-                                  [CCCallBlock actionWithBlock:^(void){
-                                    [bubble runAction:[CCMoveTo actionWithDuration:bubblePopulateTime position:ccp(cell.bubblePosition.x, cell.bubblePosition.y)]];
-                                    [bubble runAction:[CCRotateBy actionWithDuration:bubblePopulateTime angle:[self randFloatBetween:0.1 and:360.0]]];
-                                  }]
-                                  , nil];
+            NSMutableArray *actionArray = [NSMutableArray array];
             
-            [bubble runAction: action];
+            [actionArray addObject:[CCMoveTo actionWithDuration:bubblePopulateTime position:ccp(cell.bubblePosition.x, cell.bubblePosition.y)]];
+            [actionArray addObject:[CCRotateBy actionWithDuration:bubblePopulateTime angle:[self randFloatBetween:0.1 and:360.0]]];
+            
+            CCFiniteTimeAction *actionSeq = [self getActionSpawn:actionArray];
+            
+            [bubble runAction: actionSeq];
+            
             [cell setBubble: bubble];
         }
     }];
+    
+    [column enumerateObjectsUsingBlock:^(GameGridCell *cell, NSUInteger idx, BOOL *stop) {
+        cell.bubble.locked = NO;
+    }];
+    
     return extension;
 }
 
@@ -519,4 +558,39 @@ int maxCount = 0;
     return (((float) rand() / RAND_MAX) * diff) + low;
 }
 
+-(CCFiniteTimeAction *) getActionSequence: (NSArray *) actions
+{
+	CCFiniteTimeAction *seq = nil;
+	for (CCFiniteTimeAction *anAction in actions)
+	{
+		if (!seq)
+		{
+			seq = anAction;
+		}
+		else
+		{
+			seq = [CCSequence actionOne:seq two:anAction];
+		}
+	}
+	return seq;
+}
+
+
+-(CCFiniteTimeAction *) getActionSpawn: (NSArray *) actions
+{
+    CCFiniteTimeAction *result = nil;
+    for (CCFiniteTimeAction *anAction in actions)
+    {
+        if (!result)
+        {
+            result = anAction;
+        }
+        else
+        {
+            result = [CCSpawn actionOne:result two:anAction];
+        }
+    }
+    return result;
+}
+        
 @end
