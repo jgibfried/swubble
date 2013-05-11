@@ -33,6 +33,7 @@ int maxCount = 0;
     [self startTimeClock];
 }
 
+/* Timer *********************************************/
 
 - (void)startTimeClock
 {
@@ -63,6 +64,8 @@ int maxCount = 0;
     
     [self.gameTimer invalidate];
 }
+
+/* Scoring *********************************************/
 
 - (void) incrementScore: (int) amount forType: (NSString *) type
 {
@@ -208,20 +211,32 @@ int maxCount = 0;
     return newPosition;
 }
 
-- (void) setColumnLock: (BOOL) locked atPosition: (CGPoint) position
+- (GameGridCell *) getNextPopulatedCell: (CGPoint) cellPosition inDirection: (DragDirection) direction onGrid: (int) gridNumber
 {
-    [self.grids enumerateObjectsUsingBlock:^(GameGrid *grid, NSUInteger idx, BOOL *stop) {
-        [[grid getColumnForPosition:position] enumerateObjectsUsingBlock:^(GameGridCell *cell, NSUInteger idx, BOOL *stop) {
-            cell.bubble.locked = locked;
-        }];
-    }];
+    CGPoint newPosition = [self getNextPosition:cellPosition forDirection:direction];
+    if ([self positionIsOutOfBounds:newPosition]) {
+        return nil;
+    }
+    GameGridCell *nextCell = [self cellOnGrid:gridNumber atPosition:newPosition];
+    while (nextCell.bubble == nil) {
+        newPosition = [self getNextPosition:nextCell.position forDirection:direction];
+        if ([self positionIsOutOfBounds:newPosition]) {
+            return nil;
+        }
+        nextCell = [self cellOnGrid:gridNumber atPosition:newPosition];
+    }
+    return nextCell;
 }
 
-- (void) setBubbleLock: (Bubble *) bubble toValue:(BOOL) locked
+- (void) setColumnLock: (BOOL) locked onGrid:(int)gridNumber atPosition: (CGPoint) position
 {
-    bubble.locked = locked;
-    GameGridCell *otherCell = [self cellOnGrid:[self oppositeGridNumber:bubble.gridNumber] atPosition:bubble.cellPosition];
-    otherCell.bubble.locked = locked;
+    [((GameGrid *)[self.grids objectAtIndex:gridNumber]).grid enumerateObjectsUsingBlock:^(NSMutableArray *column, NSUInteger idx, BOOL *stop) {
+        [column enumerateObjectsUsingBlock:^(GameGridCell *cell, NSUInteger idx, BOOL *stop) {
+            if (cell.position.y == position.y || cell.position.x == position.x) {
+                cell.bubble.locked = locked;
+            }
+        }];
+    }];
 }
 
 - (void) setAllGridsLock: (BOOL) locked
@@ -238,25 +253,6 @@ int maxCount = 0;
             cell.bubble.locked = locked;
         }];
     }];
-}
-
-/* Cell Population Methods ******************************/
-
-- (GameGridCell *) getNextPopulatedCell: (CGPoint) cellPosition inDirection: (DragDirection) direction onGrid: (int) gridNumber
-{
-    CGPoint newPosition = [self getNextPosition:cellPosition forDirection:direction];
-    if ([self positionIsOutOfBounds:newPosition]) {
-        return nil;
-    }
-    GameGridCell *nextCell = [self cellOnGrid:gridNumber atPosition:newPosition];
-    while (nextCell.bubble == nil) {
-        newPosition = [self getNextPosition:nextCell.position forDirection:direction];
-        if ([self positionIsOutOfBounds:newPosition]) {
-            return nil;
-        }
-        nextCell = [self cellOnGrid:gridNumber atPosition:newPosition];
-    }
-    return nextCell;
 }
 
 /* Match Checking ******************************/
@@ -291,7 +287,7 @@ int maxCount = 0;
     NSMutableArray *actionArray = [NSMutableArray array];
     
     for (GameGridCell *cell in self.matchesToDestroy) {
-        [self setGrid:cell.gridNumber toLock:YES];
+        [self setColumnLock:YES onGrid:cell.gridNumber atPosition:cell.position];
         if (cell.bubble) {
             Bubble *bubble = cell.bubble;
             cell.bubble = nil;
@@ -311,7 +307,7 @@ int maxCount = 0;
     [actionArray addObject:[CCDelayTime actionWithDuration: 0.33]];
     [actionArray addObject:[CCCallFunc actionWithTarget:self selector:@selector(fillEmptyCells)]];
     [actionArray addObject:[CCDelayTime actionWithDuration: bubblePopulateTime]];
-    [actionArray addObject:[CCCallFunc actionWithTarget:self selector:@selector(afterAllMoveDone)]];
+    [actionArray addObject:[CCCallFunc actionWithTarget:self selector:@selector(check)]];
     
     CCFiniteTimeAction *actionSeq = [self getActionSequence:actionArray];
     
@@ -326,10 +322,6 @@ int maxCount = 0;
     [self.gameGridLayer removeChild: sender cleanup:YES];
 }
 
-- (void) afterAllMoveDone{
-    [self check];
-}
-
 - (void) checkForMatches
 {
     [self.grids enumerateObjectsUsingBlock:^(GameGrid *grid, NSUInteger idx, BOOL *stop) {
@@ -341,15 +333,9 @@ int maxCount = 0;
                 NSArray *hMatches1 = [matches1 objectAtIndex:1];
                 
                 if ([vMatches1 count] >= 3) {
-                    for (GameGridCell *cell in vMatches1) {
-                        [self setBubbleLock:cell.bubble toValue:YES];
-                    }
                     [self.matchesToDestroy addObjectsFromArray:vMatches1];
                 }
                 if ([hMatches1 count] >= 3) {
-                    for (GameGridCell *cell in hMatches1) {
-                        [self setBubbleLock:cell.bubble toValue:YES];
-                    }
                     [self.matchesToDestroy addObjectsFromArray:hMatches1];
                 }
             }];
@@ -496,8 +482,8 @@ int maxCount = 0;
     if (!bubble2 || bubble2.locked) {
         return;
     }
-    [self setGrid:bubble1.gridNumber toLock:YES];
-    [self setGrid:bubble2.gridNumber toLock:YES];
+    [self setColumnLock:YES onGrid:cell1.gridNumber atPosition:cell1.position];
+    [self setColumnLock:YES onGrid:cell2.gridNumber atPosition:cell2.position];
     
     [self animateSwap:cell1 withCell:cell2 withHandler:^(void){
         
@@ -508,8 +494,8 @@ int maxCount = 0;
             [self animateSwap:cell1 withCell:cell2 withHandler:^(void){
                 [cell1 setBubble: bubble1];
                 [cell2 setBubble: bubble2];
-                [self setGrid:bubble1.gridNumber toLock:NO];
-                [self setGrid:bubble2.gridNumber toLock:NO];
+                [self setColumnLock:NO onGrid:cell1.gridNumber atPosition:cell1.position];
+                [self setColumnLock:NO onGrid:cell2.gridNumber atPosition:cell2.position];
             }];
         }
     }];
@@ -523,8 +509,6 @@ int maxCount = 0;
     [self.gameGridLayer runAction:
              [CCSequence actions:
               [CCCallBlock actionWithBlock:^(void){
-                 //[CCRotateTo durationTime:1.0 angle:180.0]]
-                 
                  [cell1.bubble runAction:[CCMoveTo actionWithDuration:bubbleSwapTime position:ccp(cell2BubblePosition.x, cell2BubblePosition.y)]];
                  [cell1.bubble runAction:[CCRotateBy actionWithDuration:bubbleSwapTime angle:45.0]];
                  
@@ -534,21 +518,6 @@ int maxCount = 0;
               [CCDelayTime actionWithDuration:(bubbleSwapTime*2)],
               [CCCallBlock actionWithBlock:handler],
               nil]];
-}
-
-- (void) setValidMatches: (GameGridCell *) cell
-{
-    NSArray *matches1 = [self getMatches:cell];
-    
-    NSArray *vMatches1 = [matches1 objectAtIndex:0];
-    NSArray *hMatches1 = [matches1 objectAtIndex:1];
-
-    if ([vMatches1 count] >= 3) {
-        [self.matchesToDestroy addObjectsFromArray:vMatches1];
-    }
-    if ([hMatches1 count] >= 3) {
-        [self.matchesToDestroy addObjectsFromArray:hMatches1];
-    }
 }
 
 -(float) randFloatBetween:(float)low and:(float)high
