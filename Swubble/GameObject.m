@@ -148,28 +148,13 @@ int maxCount = 0;
 - (void)drawGridsAtOrigin: (CGPoint) origin
 {
     [self populateGrids];
+    
     __block float xPosition = origin.x;
     __block float yPosition = origin.y;
     
     [self.grids enumerateObjectsUsingBlock:^(GameGrid *grid, NSUInteger gridIdx, BOOL *stop) {
-        CCSprite *pen = [CCSprite spriteWithFile:penBackground];
-        pen.position =  ccp((xPosition-gameGridCellWidth)+(pen.contentSize.width/2), (yPosition-gameGridCellHeight-25)+(pen.contentSize.height/2));
-        
-        [self.gameGridLayer addChild:pen z:0];
-
-        for(NSMutableArray *column in grid.grid)
-        {
-            for (GameGridCell *cell in column)
-            {
-                cell.bubblePosition = ccp(xPosition, yPosition);
-                cell.bubble.position = ccp(xPosition, yPosition);
-                [self.gameGridLayer addChild: cell.bubble z: 3];
-                yPosition = (yPosition + gameGridCellHeight);
-            }
-            yPosition = origin.y;
-            xPosition = (xPosition + gameGridCellWidth);
-        }
-        xPosition = (xPosition + gameGridCellWidth);
+        [grid drawGridAtOrigin:CGPointMake(xPosition, yPosition) onLayer:self.gameGridLayer];
+        xPosition = (gameGridOffsetX + (gameGridCellWidth * gameGridSizeWidth)) + (gameGridCellWidth * 2);
     }];
     
     [self.gameGridLayer runAction: [CCSequence actions:

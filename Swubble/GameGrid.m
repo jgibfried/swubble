@@ -44,6 +44,30 @@
     return columns;
 }
 
+- (void) drawGridAtOrigin: (CGPoint) origin onLayer: (CCLayer *)layer
+{
+    __block float xPosition = origin.x;
+    __block float yPosition = origin.y;
+    
+    CCSprite *pen = [CCSprite spriteWithFile:penBackground];
+    pen.position =  ccp((xPosition-gameGridCellWidth)+(pen.contentSize.width/2), (yPosition-gameGridCellHeight-25)+(pen.contentSize.height/2));
+    
+    [layer addChild:pen z:0];
+    
+    for(NSMutableArray *column in self.grid)
+    {
+        for (GameGridCell *cell in column)
+        {
+            cell.bubblePosition = ccp(xPosition, yPosition);
+            cell.bubble.position = ccp(xPosition, yPosition);
+            [layer addChild: cell.bubble z: 3];
+            yPosition = (yPosition + gameGridCellHeight);
+        }
+        yPosition = origin.y;
+        xPosition = (xPosition + gameGridCellWidth);
+    }
+}
+
 - (GameGridCell *) getCellForPosition: (CGPoint)position
 {
     NSMutableArray *row = [self.grid objectAtIndex: position.x];

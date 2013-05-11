@@ -18,6 +18,8 @@
 
 +(GameGrid *) initWithDimensions: (CGPoint) dimensions;
 
+- (void) drawGridAtOrigin: (CGPoint) origin onLayer: (CCLayer *)layer;
+
 -(id) initWithDimensions: (CGPoint) dimensions;
 
 - (GameGridCell *) getCellForPosition: (CGPoint)position;
