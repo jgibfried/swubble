@@ -97,7 +97,7 @@ int maxCount = 0;
     NSDictionary *type4 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"4", redBubbleSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
     NSDictionary *type5 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"5", greenBubbleSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
     
-    return [NSArray arrayWithObjects: type1, type2, type3, type4, type5, nil];
+    return [NSArray arrayWithObjects: type1, type2, type3, nil];
 }
 
 - (Bubble *) getNewBubble
@@ -259,11 +259,12 @@ int maxCount = 0;
 
 - (BOOL) check
 {
-	[self checkForMatches];
+    [self checkForMatches];
 	
-	NSArray *objects = [[self.matchesToDestroy objectEnumerator] allObjects];
+	[self setAllGridsLock:NO];
+    
+    NSArray *objects = [[self.matchesToDestroy objectEnumerator] allObjects];
 	if ([objects count] == 0) {
-        [self setAllGridsLock:NO];
         return NO;
 	}
 	
