@@ -50,4 +50,11 @@
     return [row objectAtIndex:position.y];
 }
 
+
+- (NSMutableArray *) getColumnForPosition: (CGPoint)position
+{
+    return [self.grid objectAtIndex: position.x];
+}
+
+
 @end

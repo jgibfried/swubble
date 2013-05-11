@@ -208,6 +208,38 @@ int maxCount = 0;
     return newPosition;
 }
 
+- (void) setColumnLock: (BOOL) locked atPosition: (CGPoint) position
+{
+    [self.grids enumerateObjectsUsingBlock:^(GameGrid *grid, NSUInteger idx, BOOL *stop) {
+        [[grid getColumnForPosition:position] enumerateObjectsUsingBlock:^(GameGridCell *cell, NSUInteger idx, BOOL *stop) {
+            cell.bubble.locked = locked;
+        }];
+    }];
+}
+
+- (void) setBubbleLock: (Bubble *) bubble toValue:(BOOL) locked
+{
+    bubble.locked = locked;
+    GameGridCell *otherCell = [self cellOnGrid:[self oppositeGridNumber:bubble.gridNumber] atPosition:bubble.cellPosition];
+    otherCell.bubble.locked = locked;
+}
+
+- (void) setAllGridsLock: (BOOL) locked
+{
+    [self.grids enumerateObjectsUsingBlock:^(GameGrid *grid, NSUInteger idx, BOOL *stop) {
+        [self setGrid:idx toLock:locked];
+    }];
+}
+
+- (void) setGrid:(int) gridNumber toLock: (BOOL) locked
+{
+    [((GameGrid *)[self.grids objectAtIndex:gridNumber]).grid enumerateObjectsUsingBlock:^(NSMutableArray *column, NSUInteger idx, BOOL *stop) {
+        [column enumerateObjectsUsingBlock:^(GameGridCell *cell, NSUInteger idx, BOOL *stop) {
+            cell.bubble.locked = locked;
+        }];
+    }];
+}
+
 /* Cell Population Methods ******************************/
 
 - (GameGridCell *) getNextPopulatedCell: (CGPoint) cellPosition inDirection: (DragDirection) direction onGrid: (int) gridNumber
@@ -250,7 +282,8 @@ int maxCount = 0;
 	
 	NSArray *objects = [[self.matchesToDestroy objectEnumerator] allObjects];
 	if ([objects count] == 0) {
-		return NO;
+        [self setAllGridsLock:NO];
+        return NO;
 	}
 	
     int points = [self getPoints];
@@ -258,12 +291,7 @@ int maxCount = 0;
     NSMutableArray *actionArray = [NSMutableArray array];
     
     for (GameGridCell *cell in self.matchesToDestroy) {
-//        NSMutableArray *column = [((NSMutableArray *)([(GameGrid *)[self.grids objectAtIndex:cell.gridNumber]]).grid) objectAtIndex:cell.position.x];
-//        
-//        [column enumerateObjectsUsingBlock:^(GameGridCell *cell, NSUInteger idx, BOOL *stop) {
-//            cell.bubble.locked = YES;
-//        }];
-//        
+        [self setGrid:cell.gridNumber toLock:YES];
         if (cell.bubble) {
             Bubble *bubble = cell.bubble;
             cell.bubble = nil;
@@ -290,8 +318,7 @@ int maxCount = 0;
     [self.gameGridLayer runAction: actionSeq];
     
     [actionArray removeAllObjects];
-    [self unlockAllBubbles];
-	return YES;
+    return YES;
 }
 
 - (void) removeBubble: (id) sender
@@ -301,17 +328,6 @@ int maxCount = 0;
 
 - (void) afterAllMoveDone{
     [self check];
-}
-
-- (void) unlockAllBubbles
-{
-    [self.grids enumerateObjectsUsingBlock:^(GameGrid *grid, NSUInteger idx, BOOL *stop) {
-        [grid.grid enumerateObjectsUsingBlock:^(NSMutableArray *column, NSUInteger idx, BOOL *stop) {
-            [column enumerateObjectsUsingBlock:^(GameGridCell *cell, NSUInteger idx, BOOL *stop) {
-                cell.bubble.locked = NO;
-            }];
-        }];
-    }];
 }
 
 - (void) checkForMatches
@@ -326,17 +342,13 @@ int maxCount = 0;
                 
                 if ([vMatches1 count] >= 3) {
                     for (GameGridCell *cell in vMatches1) {
-                        cell.bubble.locked = YES;
-                        GameGridCell *otherCell = [self cellOnGrid:[self oppositeGridNumber:cell.bubble.gridNumber] atPosition:cell.position];
-                        otherCell.bubble.locked = YES;
+                        [self setBubbleLock:cell.bubble toValue:YES];
                     }
                     [self.matchesToDestroy addObjectsFromArray:vMatches1];
                 }
                 if ([hMatches1 count] >= 3) {
                     for (GameGridCell *cell in hMatches1) {
-                        cell.bubble.locked = YES;
-                        GameGridCell *otherCell = [self cellOnGrid:[self oppositeGridNumber:cell.bubble.gridNumber] atPosition:cell.position];
-                        otherCell.bubble.locked = YES;
+                        [self setBubbleLock:cell.bubble toValue:YES];
                     }
                     [self.matchesToDestroy addObjectsFromArray:hMatches1];
                 }
@@ -344,6 +356,7 @@ int maxCount = 0;
         }];
     }];
 }
+
 
 - (NSArray *) getMatches: (GameGridCell *)cell
 {
@@ -390,9 +403,6 @@ int maxCount = 0;
 {
 	__block int extension = 0;
     [column enumerateObjectsUsingBlock:^(GameGridCell *cell, NSUInteger idx, BOOL *stop) {
-        cell.bubble.locked = YES;
-    }];
-    [column enumerateObjectsUsingBlock:^(GameGridCell *cell, NSUInteger idx, BOOL *stop) {
         if (cell.bubble == nil) {
            	extension++;
             Bubble *bubble = nil;
@@ -400,6 +410,7 @@ int maxCount = 0;
             if (cellToCheck == nil) {
                 bubble = [self addNewBubbleAtPosition:CGPointMake(cell.bubblePosition.x, self.windowSize.height+gameGridCellHeight)];
                 bubble.gridNumber = cell.gridNumber;
+                bubble.locked = YES;
             } else {
                 bubble = cellToCheck.bubble;
                 [cellToCheck setBubble:nil];
@@ -417,11 +428,6 @@ int maxCount = 0;
             [cell setBubble: bubble];
         }
     }];
-    
-    [column enumerateObjectsUsingBlock:^(GameGridCell *cell, NSUInteger idx, BOOL *stop) {
-        cell.bubble.locked = NO;
-    }];
-    
     return extension;
 }
 
@@ -482,21 +488,17 @@ int maxCount = 0;
     }
     
     Bubble *bubble1 = cell1.bubble;
-    if (!bubble1) {
+    if (!bubble1 || bubble1.locked) {
         return;
     }
     
     Bubble *bubble2 = cell2.bubble;
-    if (!bubble2) {
+    if (!bubble2 || bubble2.locked) {
         return;
     }
+    [self setGrid:bubble1.gridNumber toLock:YES];
+    [self setGrid:bubble2.gridNumber toLock:YES];
     
-    if (bubble1.locked || bubble2.locked) {
-        return;
-    }
-    
-    bubble1.locked = YES;
-    bubble2.locked = YES;
     [self animateSwap:cell1 withCell:cell2 withHandler:^(void){
         
         [cell2 setBubble: bubble1];
@@ -506,12 +508,9 @@ int maxCount = 0;
             [self animateSwap:cell1 withCell:cell2 withHandler:^(void){
                 [cell1 setBubble: bubble1];
                 [cell2 setBubble: bubble2];
-                bubble1.locked = NO;
-                bubble2.locked = NO;
+                [self setGrid:bubble1.gridNumber toLock:NO];
+                [self setGrid:bubble2.gridNumber toLock:NO];
             }];
-        }else{
-            bubble1.locked = NO;
-            bubble2.locked = NO;
         }
     }];
 }

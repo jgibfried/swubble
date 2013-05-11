@@ -86,12 +86,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Swubble/Bubble.m"
-         timestampString = "389919602.683396"
+         timestampString = "389978829.338564"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "114"
-         endingLineNumber = "114"
-         landmarkName = "-determineDirection:andEnd:"
+         startingLineNumber = "87"
+         endingLineNumber = "87"
+         landmarkName = "-ccTouchMoved:withEvent:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -99,12 +99,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Swubble/Bubble.m"
-         timestampString = "389919602.683396"
+         timestampString = "389978829.338564"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "73"
-         endingLineNumber = "73"
-         landmarkName = "-ccTouchEnded:withEvent:"
+         startingLineNumber = "46"
+         endingLineNumber = "46"
+         landmarkName = "-containsTouchLocation:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -112,12 +112,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Swubble/Bubble.m"
-         timestampString = "389919602.683396"
+         timestampString = "389978829.338564"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "124"
-         endingLineNumber = "124"
-         landmarkName = "-determineDirection:andEnd:"
+         startingLineNumber = "97"
+         endingLineNumber = "97"
+         landmarkName = "-ccTouchMoved:withEvent:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -138,11 +138,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Swubble/GameObject.m"
-         timestampString = "389974605.159264"
+         timestampString = "389976138.085204"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "46"
-         endingLineNumber = "46"
+         startingLineNumber = "39"
+         endingLineNumber = "39"
          landmarkName = "-startTimeClock"
          landmarkType = "5">
       </FileBreakpoint>
@@ -151,11 +151,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Swubble/GameObject.m"
-         timestampString = "389974605.159264"
+         timestampString = "389976138.085204"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "48"
-         endingLineNumber = "48"
+         startingLineNumber = "41"
+         endingLineNumber = "41"
          landmarkName = "-startTimeClock"
          landmarkType = "5">
       </FileBreakpoint>
@@ -164,11 +164,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Swubble/GameObject.m"
-         timestampString = "389974605.159264"
+         timestampString = "389976138.085204"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "155"
-         endingLineNumber = "155"
+         startingLineNumber = "147"
+         endingLineNumber = "147"
          landmarkName = "-drawGridsAtOrigin:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -177,11 +177,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Swubble/GameObject.m"
-         timestampString = "389974605.159264"
+         timestampString = "389979864.428969"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "253"
-         endingLineNumber = "253"
+         startingLineNumber = "294"
+         endingLineNumber = "294"
          landmarkName = "-check"
          landmarkType = "5">
       </FileBreakpoint>
@@ -190,12 +190,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Swubble/GameObject.m"
-         timestampString = "389974605.159264"
+         timestampString = "389979864.428969"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "283"
-         endingLineNumber = "283"
-         landmarkName = "-check"
+         startingLineNumber = "343"
+         endingLineNumber = "343"
+         landmarkName = "-checkForMatches"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

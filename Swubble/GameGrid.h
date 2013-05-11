@@ -19,6 +19,8 @@
 +(GameGrid *) initWithDimensions: (CGPoint) dimensions;
 
 -(id) initWithDimensions: (CGPoint) dimensions;
+
 - (GameGridCell *) getCellForPosition: (CGPoint)position;
+- (NSMutableArray *) getColumnForPosition: (CGPoint)position;
 
 @end
