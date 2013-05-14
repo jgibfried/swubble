@@ -22,17 +22,20 @@
 
 - (void) setupMenu
 {
-    CCLabelTTF *label = [CCLabelTTF labelWithString:@"Swubble!" fontName:@"Helvetica" fontSize:28];
-    
     CGSize size = [[CCDirector sharedDirector] winSize];
-    label.position =  ccp( size.width /2 , size.height/2 );
-    [self addChild: label];
+//    CCLabelTTF *label = [CCLabelTTF labelWithString:@"Swubble!" fontName:@"Helvetica" fontSize:28];
+//    
+//    label.color = ccc3(0, 0, 0);
+//    
+//    label.position =  ccp( size.width /2 , size.height/2 );
+//    [self addChild: label];
     
     [CCMenuItemFont setFontSize:28];
     CCMenuItem *startGameItem = [CCMenuItemFont itemWithString:@"Start Game" block:^(id sender) {
     	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameScene init] ]];
     }];
-        
+    [startGameItem setColor:ccc3(0,0,0)];
+    
     CCMenu *menu = [CCMenu menuWithItems:startGameItem, nil];
     
     [menu alignItemsVerticallyWithPadding:20];

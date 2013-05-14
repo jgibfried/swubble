@@ -38,6 +38,7 @@ int maxCount = 0;
 - (void)startTimeClock
 {
     self.gameTimeLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Time Left: %d", self.gameTimeLeft] fontName:@"Helvetica" fontSize:30.0];
+    self.gameTimeLabel.color = ccc3(0, 0, 0);
     self.gameTimeLabel.position = CGPointMake(self.windowSize.width-120, self.windowSize.height-50);
     [self.gameGridLayer addChild: self.gameTimeLabel];
     

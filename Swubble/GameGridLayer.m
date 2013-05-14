@@ -29,15 +29,19 @@
     self.windowSize = [[CCDirector sharedDirector] winSize];
     
     self.totalScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", self.game.totalScore] fontName:@"Helvetica" fontSize:36.0];
+    self.totalScoreLabel.color = ccc3(0, 0, 0);
     self.totalScoreLabel.position = CGPointMake(120, self.windowSize.height-50);
     
     self.score1Label = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", [self.game getScoreForType:@"1"]] fontName:@"Helvetica" fontSize:36.0];
+    self.score1Label.color = ccc3(0, 0, 0);
     self.score1Label.position = CGPointMake(300, self.windowSize.height-50);
     
     self.score2Label = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", [self.game getScoreForType:@"2"]] fontName:@"Helvetica" fontSize:36.0];
+    self.score2Label.color = ccc3(0, 0, 0);
     self.score2Label.position = CGPointMake(500, self.windowSize.height-50);
     
     self.score3Label = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", [self.game getScoreForType:@"3"]] fontName:@"Helvetica" fontSize:36.0];
+    self.score3Label.color = ccc3(0, 0, 0);
     self.score3Label.position = CGPointMake(700, self.windowSize.height-50);
     
     [self addChild: self.totalScoreLabel];
