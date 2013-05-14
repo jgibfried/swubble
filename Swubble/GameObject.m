@@ -97,13 +97,18 @@ int maxCount = 0;
     NSDictionary *type4 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"4", redBubbleSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
     NSDictionary *type5 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"5", greenBubbleSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
     
-    return [NSArray arrayWithObjects: type1, type2, type3, nil];
+    return [NSArray arrayWithObjects: type1, type2, type3, type4, nil];
+}
+
+- (NSDictionary *) getRandomType
+{
+    int randomNumber = ((arc4random() % [self.bubbleTypes count]) + 1) - 1  ;
+    return [self.bubbleTypes objectAtIndex:randomNumber];
 }
 
 - (Bubble *) getNewBubble
 {
-    int randomNumber = ((arc4random() % [self.bubbleTypes count]) + 1) - 1  ;
-    Bubble *bubble = [Bubble initWithData:[self.bubbleTypes objectAtIndex:randomNumber]];
+    Bubble *bubble = [Bubble initWithData:[self getRandomType]];
     bubble.touchDelegate = self;
     return bubble;
 }
@@ -136,10 +141,18 @@ int maxCount = 0;
 - (void)populateGrids
 {
     [self.grids enumerateObjectsUsingBlock:^(GameGrid *grid, NSUInteger gridIdx, BOOL *stop) {
-        [grid.grid enumerateObjectsUsingBlock:^(NSMutableArray *column, NSUInteger idx, BOOL *stop) {
-            [column enumerateObjectsUsingBlock:^(GameGridCell *cell, NSUInteger idx, BOOL *stop) {
+        [grid.grid enumerateObjectsUsingBlock:^(NSMutableArray *column, NSUInteger columnIdx, BOOL *stop) {
+            [column enumerateObjectsUsingBlock:^(GameGridCell *cell, NSUInteger cellIdx, BOOL *stop) {
                 cell.gridNumber = gridIdx;
-                [cell setBubble:[self getNewBubble]];
+                Bubble *newBubble = [self getNewBubble];
+                
+                NSArray *matches1 = [self getMatches:newBubble.type atPosition:cell.position onGrid:cell.gridNumber];
+                
+                while ([[matches1 objectAtIndex:0] count] >= 2 || [[matches1 objectAtIndex:1] count] >= 2) {
+                    newBubble = [self getNewBubble];
+                    matches1 = [self getMatches:newBubble.type atPosition:cell.position onGrid:cell.gridNumber];
+                }
+                [cell setBubble: newBubble];
             }];
         }];
     }];
@@ -156,12 +169,6 @@ int maxCount = 0;
         [grid drawGridAtOrigin:CGPointMake(xPosition, yPosition) onLayer:self.gameGridLayer];
         xPosition = (gameGridOffsetX + (gameGridCellWidth * gameGridSizeWidth)) + (gameGridCellWidth * 2);
     }];
-    
-    [self.gameGridLayer runAction: [CCSequence actions:
-                                    [CCDelayTime actionWithDuration: 1],
-                                    [CCCallFunc actionWithTarget:self selector:@selector(check)],
-                                    nil]];
-
 }
 
 - (int) oppositeGridNumber: (int) idx
@@ -356,6 +363,35 @@ int maxCount = 0;
     }
     return matches;
 }
+
+
+- (NSArray *) getMatches: (NSString *)type atPosition: (CGPoint) position onGrid: (int) gridNumber
+{
+    NSMutableArray *verticleMatches = [NSMutableArray array];
+    [self checkForMatch:type withPosition: position onGrid: gridNumber inDirection:kDirectionUp withArray:verticleMatches];
+    [self checkForMatch:type withPosition: position onGrid: gridNumber inDirection:kDirectionDown withArray:verticleMatches];
+    
+    NSMutableArray *horizontalMatches = [NSMutableArray array];
+    [self checkForMatch:type withPosition: position onGrid: gridNumber inDirection:kDirectionLeft withArray:horizontalMatches];
+    [self checkForMatch:type withPosition: position onGrid: gridNumber inDirection:kDirectionRight withArray:horizontalMatches];
+    
+    return [NSArray arrayWithObjects:verticleMatches, horizontalMatches, nil];
+}
+
+-(NSArray *) checkForMatch:  (NSString *)type withPosition: (CGPoint) position  onGrid: (int) gridNumber inDirection: (DragDirection) direction withArray: (NSMutableArray *) matches
+{
+    CGPoint newPosition = [self getNextPosition:position forDirection:direction];
+    
+    if (![self positionIsOutOfBounds:newPosition]){
+        GameGridCell *cellToCheck = [self cellOnGrid:gridNumber atPosition:newPosition];
+        if ([type isEqualToString:cellToCheck.bubble.type]) {
+            [matches addObject:cellToCheck];
+            return [self checkForMatch:cellToCheck inDirection:direction withArray:matches];
+        }
+    }
+    return matches;
+}
+
 
 
 - (void) fillEmptyCells
