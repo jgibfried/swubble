@@ -22,12 +22,11 @@
 
 - (void) setupMenu
 {
-    CGSize size = [[CCDirector sharedDirector] winSize];
 //    CCLabelTTF *label = [CCLabelTTF labelWithString:@"Swubble!" fontName:@"Helvetica" fontSize:28];
 //    
 //    label.color = ccc3(0, 0, 0);
 //    
-//    label.position =  ccp( size.width /2 , size.height/2 );
+//    label.position =  ccp( self.windowSize.width /2 , self.windowSize.height/2 );
 //    [self addChild: label];
     
     [CCMenuItemFont setFontSize:28];
@@ -39,7 +38,7 @@
     CCMenu *menu = [CCMenu menuWithItems:startGameItem, nil];
     
     [menu alignItemsVerticallyWithPadding:20];
-    [menu setPosition:ccp( size.width/2, size.height/2 - 50)];
+    [menu setPosition:ccp( self.windowSize.width/2, self.windowSize.height/2 - 50)];
     
     // Add the menu to the layer
     [self addChild:menu z:1];

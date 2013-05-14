@@ -14,8 +14,6 @@
 
 @property (nonatomic, strong) GameObject *game;
 
-@property (nonatomic) CGSize windowSize;
-
 @property (nonatomic, strong) CCLabelTTF *totalScoreLabel;
 @property (nonatomic, strong) CCLabelTTF *score1Label;
 @property (nonatomic, strong) CCLabelTTF *score2Label;

@@ -10,4 +10,15 @@
 
 @implementation BaseLayer
 
+
+-(id) init
+{
+    self = [super init];
+	if(self) {
+        self.windowSize = [[CCDirector sharedDirector] winSize];
+    }
+	return self;
+}
+
+
 @end

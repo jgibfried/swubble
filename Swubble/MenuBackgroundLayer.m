@@ -20,9 +20,8 @@
 
 - (void) setupBackground
 {
-    CGSize size = [[CCDirector sharedDirector] winSize];
     CCSprite *bg = [CCSprite spriteWithFile: menuBackground];
-    bg.position =  ccp( size.width /2 , size.height/2 );
+    bg.position =  ccp( self.windowSize.width /2 , self.windowSize.height/2 );
     [self addChild:bg z:0];
 }
 

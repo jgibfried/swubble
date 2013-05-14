@@ -165,6 +165,7 @@
 		3AA18F2F16E8E702009A3AC3 /* MenuBackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA18F2E16E8E702009A3AC3 /* MenuBackgroundLayer.m */; };
 		3AA18F3516E8F4B2009A3AC3 /* BaseLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA18F3416E8F4B2009A3AC3 /* BaseLayer.m */; };
 		3AB19F6D170F017B0039B0E0 /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB19F6C170F017B0039B0E0 /* AnimationManager.m */; };
+		3ABDB10D17427B4B00A62686 /* GameEndLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABDB10C17427B4B00A62686 /* GameEndLayer.m */; };
 		3AC1E39117035B40008A8435 /* yellowBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AC1E38F17035B40008A8435 /* yellowBubble.png */; };
 		3AC1E39217035B40008A8435 /* yellowBubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AC1E39017035B40008A8435 /* yellowBubble@2x.png */; };
 		3AE0B19716EE909500636BC6 /* GameGridLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE0B19616EE909500636BC6 /* GameGridLayer.m */; };
@@ -489,6 +490,8 @@
 		3AA18F3C16E924B2009A3AC3 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		3AB19F6B170F017B0039B0E0 /* AnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationManager.h; sourceTree = "<group>"; };
 		3AB19F6C170F017B0039B0E0 /* AnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationManager.m; sourceTree = "<group>"; };
+		3ABDB10B17427B4B00A62686 /* GameEndLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEndLayer.h; sourceTree = "<group>"; };
+		3ABDB10C17427B4B00A62686 /* GameEndLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameEndLayer.m; sourceTree = "<group>"; };
 		3AC1E38F17035B40008A8435 /* yellowBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowBubble.png; sourceTree = "<group>"; };
 		3AC1E39017035B40008A8435 /* yellowBubble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yellowBubble@2x.png"; sourceTree = "<group>"; };
 		3AE0B19516EE909500636BC6 /* GameGridLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameGridLayer.h; sourceTree = "<group>"; };
@@ -985,6 +988,8 @@
 				3AA18F2B16E8E6EC009A3AC3 /* GameBackgroundLayer.m */,
 				3AE0B19516EE909500636BC6 /* GameGridLayer.h */,
 				3AE0B19616EE909500636BC6 /* GameGridLayer.m */,
+				3ABDB10B17427B4B00A62686 /* GameEndLayer.h */,
+				3ABDB10C17427B4B00A62686 /* GameEndLayer.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -1253,6 +1258,7 @@
 				3A02003316F4A9E200F6363C /* GameGrid.m in Sources */,
 				3A02003616F4ABFC00F6363C /* GameGridCell.m in Sources */,
 				3AB19F6D170F017B0039B0E0 /* AnimationManager.m in Sources */,
+				3ABDB10D17427B4B00A62686 /* GameEndLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,4 +12,6 @@
 
 @interface BaseLayer : CCLayer
 
+@property (nonatomic) CGSize windowSize;
+
 @end

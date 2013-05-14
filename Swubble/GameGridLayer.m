@@ -10,8 +10,6 @@
 
 @implementation GameGridLayer
 
-@synthesize windowSize;
-
 -(id) init
 {
     self = [super init];
@@ -26,8 +24,6 @@
 
 - (void) drawScoreLabels
 {
-    self.windowSize = [[CCDirector sharedDirector] winSize];
-    
     self.totalScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", self.game.totalScore] fontName:@"Helvetica" fontSize:36.0];
     self.totalScoreLabel.color = ccc3(0, 0, 0);
     self.totalScoreLabel.position = CGPointMake(120, self.windowSize.height-50);
