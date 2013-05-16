@@ -17,6 +17,7 @@
 #define pigSprite          @"pigSprite.png"
 #define cowSprite          @"cowSprite.png"
 #define chickenSprite      @"chickenSprite.png"
+#define sheepSprite        @"sheepSprite.png"
 
 #define redBubbleSprite    @"redBubble.png"
 #define greenBubbleSprite  @"greenBubble.png"

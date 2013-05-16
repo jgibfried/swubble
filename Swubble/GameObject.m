@@ -95,8 +95,7 @@ int maxCount = 0;
     NSDictionary *type1 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"1", pigSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
     NSDictionary *type2 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"2", cowSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
     NSDictionary *type3 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"3", chickenSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
-    NSDictionary *type4 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"4", redBubbleSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
-    NSDictionary *type5 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"5", greenBubbleSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
+    NSDictionary *type4 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"4", sheepSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
     
     return [NSArray arrayWithObjects: type1, type2, type3, type4, nil];
 }
