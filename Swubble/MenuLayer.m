@@ -22,19 +22,19 @@
 
 - (void) setupMenu
 {
-    CCLabelTTF *label = [CCLabelTTF labelWithString:@"Baryard Blitz!" fontName:@"HeeHawRegular" fontSize:40];
+    CCLabelTTF *label = [CCLabelTTF labelWithString:@"Swubble" fontName:@"Helvetica" fontSize:40];
     
-    label.color = ccc3(0, 0, 0);
+    label.color = whiteColor;
     
     label.position =  ccp( self.windowSize.width /2 , self.windowSize.height/2 );
     [self addChild: label];
     
-    [CCMenuItemFont setFontName:@"SketchBoards"];
+    [CCMenuItemFont setFontName:@"Helvetica"];
     [CCMenuItemFont setFontSize:28];
     CCMenuItem *startGameItem = [CCMenuItemFont itemWithString:@"Start Game" block:^(id sender) {
     	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameScene init] ]];
     }];
-    [startGameItem setColor:ccc3(0,0,0)];
+    [startGameItem setColor:whiteColor];
     
     CCMenu *menu = [CCMenu menuWithItems:startGameItem, nil];
     

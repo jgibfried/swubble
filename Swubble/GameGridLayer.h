@@ -18,6 +18,7 @@
 @property (nonatomic, strong) CCLabelTTF *score1Label;
 @property (nonatomic, strong) CCLabelTTF *score2Label;
 @property (nonatomic, strong) CCLabelTTF *score3Label;
+@property (nonatomic, strong) CCLabelTTF *score4Label;
 
 
 @end

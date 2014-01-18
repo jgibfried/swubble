@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 gibfried. All rights reserved.
 //
 
+#import "GameEndScene.h"
 #import "GameObject.h"
 
 @implementation GameObject
@@ -37,8 +38,8 @@ int maxCount = 0;
 
 - (void)startTimeClock
 {
-    self.gameTimeLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Time Left: %d", self.gameTimeLeft] fontName:@"Helvetica" fontSize:30.0];
-    self.gameTimeLabel.color = ccc3(0, 0, 0);
+    self.gameTimeLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Time Left: %d", self.gameTimeLeft] fontName:@"Helvetica" fontSize:26.0];
+    self.gameTimeLabel.color = whiteColor;
     self.gameTimeLabel.position = CGPointMake(self.windowSize.width-120, self.windowSize.height-50);
     [self.gameGridLayer addChild: self.gameTimeLabel];
     
@@ -54,7 +55,11 @@ int maxCount = 0;
     self.gameTimeSpent++;
     self.gameTimeLeft--;
     
-    [self.gameTimeLabel setString:[NSString stringWithFormat:@"Time Left: %d", self.gameTimeLeft]];
+    self.gameTimeLeftMin = self.gameTimeLeft/60;
+    self.gameTimeLeftSec = self.gameTimeLeft%60;
+    
+    
+    [self.gameTimeLabel setString:[NSString stringWithFormat:@"Time Left: %d:%d", self.gameTimeLeftMin, self.gameTimeLeftSec]];
     
     if (self.gameTimeLeft <= 0)
         [self endGame];
@@ -62,8 +67,8 @@ int maxCount = 0;
 
 - (void) endGame
 {
-    
     [self.gameTimer invalidate];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameEndScene initWithScore: self.totalScore] ]];
 }
 
 /* Scoring *********************************************/
@@ -92,10 +97,10 @@ int maxCount = 0;
 
 - (NSArray *) bubbleTypes
 {
-    NSDictionary *type1 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"1", pigSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
-    NSDictionary *type2 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"2", cowSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
-    NSDictionary *type3 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"3", chickenSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
-    NSDictionary *type4 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"4", sheepSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
+    NSDictionary *type1 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"1", yellowBubbleSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
+    NSDictionary *type2 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"2", greenBubbleSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
+    NSDictionary *type3 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"3", redBubbleSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
+    NSDictionary *type4 = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"4", blueBubbleSprite, nil] forKeys:[NSArray arrayWithObjects:@"type", @"file", nil]];
     
     return [NSArray arrayWithObjects: type1, type2, type3, type4, nil];
 }
@@ -220,17 +225,6 @@ int maxCount = 0;
     return nextCell;
 }
 
-- (void) setColumnLock: (BOOL) locked onGrid:(int)gridNumber atPosition: (CGPoint) position
-{
-    [((GameGrid *)[self.grids objectAtIndex:gridNumber]).grid enumerateObjectsUsingBlock:^(NSMutableArray *column, NSUInteger idx, BOOL *stop) {
-        [column enumerateObjectsUsingBlock:^(GameGridCell *cell, NSUInteger idx, BOOL *stop) {
-            if (cell.position.y == position.y || cell.position.x == position.x) {
-                cell.bubble.locked = locked;
-            }
-        }];
-    }];
-}
-
 - (void) setAllGridsLock: (BOOL) locked
 {
     [self.grids enumerateObjectsUsingBlock:^(GameGrid *grid, NSUInteger idx, BOOL *stop) {
@@ -246,6 +240,31 @@ int maxCount = 0;
         }];
     }];
 }
+
+
+- (void) setColumnLock: (BOOL) locked onGrid:(int)gridNumber atPosition: (CGPoint) position
+{
+    [((GameGrid *)[self.grids objectAtIndex:gridNumber]).grid enumerateObjectsUsingBlock:^(NSMutableArray *column, NSUInteger idx, BOOL *stop) {
+        [column enumerateObjectsUsingBlock:^(GameGridCell *cell, NSUInteger idx, BOOL *stop) {
+            if (cell.position.y == position.y || cell.position.x == position.x) {
+                cell.bubble.locked = locked;
+            }
+        }];
+    }];
+}
+
+
+- (void) setColumnMoving: (BOOL) moving onGrid:(int)gridNumber atPosition: (CGPoint) position
+{
+    [((GameGrid *)[self.grids objectAtIndex:gridNumber]).grid enumerateObjectsUsingBlock:^(NSMutableArray *column, NSUInteger idx, BOOL *stop) {
+        [column enumerateObjectsUsingBlock:^(GameGridCell *cell, NSUInteger idx, BOOL *stop) {
+            if (cell.position.y == position.y || cell.position.x == position.x) {
+                cell.bubble.moving = moving;
+            }
+        }];
+    }];
+}
+
 
 /* Match Checking ******************************/
 
@@ -280,6 +299,7 @@ int maxCount = 0;
     NSMutableArray *actionArray = [NSMutableArray array];
     
     for (GameGridCell *cell in self.matchesToDestroy) {
+        [self setColumnMoving:YES onGrid:cell.gridNumber atPosition:cell.position];
         [self setColumnLock:YES onGrid:cell.gridNumber atPosition:cell.position];
         if (cell.bubble) {
             Bubble *bubble = cell.bubble;
@@ -378,7 +398,7 @@ int maxCount = 0;
     return [NSArray arrayWithObjects:verticleMatches, horizontalMatches, nil];
 }
 
--(NSArray *) checkForMatch:  (NSString *)type withPosition: (CGPoint) position  onGrid: (int) gridNumber inDirection: (DragDirection) direction withArray: (NSMutableArray *) matches
+-(NSArray *) checkForMatch: (NSString *)type withPosition: (CGPoint) position  onGrid: (int) gridNumber inDirection: (DragDirection) direction withArray: (NSMutableArray *) matches
 {
     CGPoint newPosition = [self getNextPosition:position forDirection:direction];
     
@@ -397,7 +417,7 @@ int maxCount = 0;
 - (void) fillEmptyCells
 {
 	maxCount = 0;
-    [self.grids enumerateObjectsUsingBlock:^(GameGrid *grid, NSUInteger idx, BOOL *stop) {
+    [self.grids enumerateObjectsUsingBlock:^(GameGrid *grid, NSUInteger gridIdx, BOOL *stop) {
         [grid.grid enumerateObjectsUsingBlock:^(NSArray *column, NSUInteger idx, BOOL *stop) {
             int count = [self fillSingleColumn:column];
             if (count > maxCount) {

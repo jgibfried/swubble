@@ -11,18 +11,14 @@
 #define introBackground    @"menuBackgroundImage.png"
 #define menuBackground     @"menuBackgroundImage.png"
 #define gameBackground     @"menuBackgroundImage.png"
-#define penBackground      @"penBackground.png"
+#define borderBackground   @"borderBackground.png"
 
-
-#define pigSprite          @"pigSprite.png"
-#define cowSprite          @"cowSprite.png"
-#define chickenSprite      @"chickenSprite.png"
-#define sheepSprite        @"sheepSprite.png"
-
+#define yellowBubbleSprite @"yellowBubble.png"
+#define blueBubbleSprite   @"blueBubble.png"
 #define redBubbleSprite    @"redBubble.png"
 #define greenBubbleSprite  @"greenBubble.png"
 
-#define gameTimeDefault    360
+#define gameTimeDefault    30
 
 #define bubbleDestroyTime  0.2
 #define bubbleSwapTime     0.2
@@ -42,6 +38,8 @@
 #define difficultyLevels   5
 
 #define pointsPerBubble    30
+
+#define whiteColor         ccc3(255, 255, 255)
 
 typedef enum dragDirection {
     kDirectionUp,

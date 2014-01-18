@@ -112,7 +112,7 @@
     if((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) && ([[UIScreen mainScreen] bounds].size.height == 568)) {
         [sharedFileUtils setiPhoneRetinaDisplaySuffix: @"-568h"];
     }
-	// Assume that PVR images have premultiplied alpha
+    // Assume that PVR images have premultiplied alpha
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
 	
 	// Create a Navigation Controller with the Director

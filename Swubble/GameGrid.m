@@ -49,7 +49,7 @@
     __block float xPosition = origin.x;
     __block float yPosition = origin.y;
     
-    CCSprite *pen = [CCSprite spriteWithFile:penBackground];
+    CCSprite *pen = [CCSprite spriteWithFile:borderBackground];
     pen.position =  ccp((xPosition-gameGridCellWidth)+(pen.contentSize.width/2), (yPosition-gameGridCellHeight-25)+(pen.contentSize.height/2));
     
     [layer addChild:pen z:0];

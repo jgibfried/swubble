@@ -10,4 +10,9 @@
 
 @interface GameEndLayer : BaseLayer
 
+- (BaseLayer *) initWithScore: (int) totalScore;
+
+@property (nonatomic, strong) CCLabelTTF *totalScoreLabel;
+@property (nonatomic, strong) CCLabelTTF *restartButton;
+
 @end

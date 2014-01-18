@@ -31,6 +31,9 @@
 @property (nonatomic) int gameTimeSpent;
 @property (nonatomic) int gameTimeLeft;
 
+@property (nonatomic) int gameTimeLeftMin;
+@property (nonatomic) int gameTimeLeftSec;
+
 @property (nonatomic, strong) NSArray *grids;
 
 @property (nonatomic, strong) NSTimer *gameTimer;
